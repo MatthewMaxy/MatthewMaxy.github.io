@@ -24,13 +24,14 @@ portraits: '/assets/profile.jpeg' # your portraits image file path
 
 # SNS
 SNS: true
-SNS-icon: #['Facebook', 'weibo', 'qq', 'github', 'Dribbble', 'Twitter', 'instagram', 'weixin', 'Codepen']
+SNS-icon: #['Facebook', 'weibo', 'qq', 'github', 'Dribbble', 'Twitter', 'instagram', 'weixin', 'Codepen', 'Huggingface']
   mail: 'matthewma0211@gmail.com'
   qq: ''
   weixin: ''
   github: 'https://github.com/MatthewMaxy'
   weibo: 'https://m.weibo.cn/profile/5860228438'
   Google: ''
+  Huggingface: ''
 
 
 # 分页
