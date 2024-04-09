@@ -1,8 +1,7 @@
 # Site settings 配置站点
 title: 'Matthew’s Blog'
-page-title: 'hello?'
-description: 'your web description'
-keywords: 'your web keywords, another keywords'
+description: 'This blog is used to record my study notes and project materials'
+keywords: 'Computer Sciences, Machine Learning, Artificial Intelligence'
 url: 'https://MatthewMaxy.github.io' # your host
 
 # nav 中文字符空格：&emsp;
