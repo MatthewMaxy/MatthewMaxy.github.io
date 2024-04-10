@@ -20,7 +20,7 @@ subtitle: '计算机视觉里的Transformer模型'
 
 #### 1. 通过 $W_q, W_k ,W_v$ 生成对应的 $Q, K, V$ 。
 
-这里假设 $Q, K, V$ 的向量长度与 feature map 的深度 $C$ 保持一致（ 即 $d_{model} = C$ ）。那么对应所有像素生成 $Q$ 的过程如下式：
+这里假设 $`Q, K, V`$ 的向量长度与 feature map 的深度 $C$ 保持一致（ 即 $d_{model} = C$ ）。那么对应所有像素生成 $Q$ 的过程如下式：
 
 ```math
 A^{hw \times C} \cdot W_q^{C \times C} = Q^{hw \times C}
