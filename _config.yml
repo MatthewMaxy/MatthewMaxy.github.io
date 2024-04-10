@@ -74,7 +74,7 @@ social-share-items: ['qq', 'wechat', 'weibo', 'twitter', 'facebook']
 
 # 百度统计 在baidu-url里填写自己相关的url代码
 baidu: true
-baidu-url: 'https://matthewmaxy.github.io/'
+baidu-url: '0623aee37280ac65c5045ca0f19126b4'
 # 谷歌分析 在google-ID里填写自己在谷歌分析获得的追踪ID
 google: false
 google-ID: ''
