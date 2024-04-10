@@ -40,7 +40,7 @@ $$ A^{hw \times C} \cdot W_q^{C \times C} = Q^{hw \times C} $$
 + $W_q^{C \times C}$：生成query的变换矩阵
 + $Q^{hw \times C}$：所有像素通过 $W^{C \times C}_q$ 得到的query拼接后的矩阵
 
-根据矩阵运算的计算量公式可以得到生成 $Q$ 的计算量为 $hw \times C \times C$，生成 $K$ 和 $V$ 同理都是 $hwC^2$， **总共是 $3hwC^2$ **。
+根据矩阵运算的计算量公式可以得到生成 $Q$ 的计算量为 $hw \times C \times C$，生成 $K$ 和 $V$ 同理都是 $hwC^2$， __总共是 $3hwC^2$__。
 
 #### 2. 相似度计算与查询
 
@@ -62,4 +62,4 @@ $$ P^{hw \times hw} \cdot V^{hw \times C} = B ^{hw \times hw} $$
 
 $$B^{hw \times C} \cdot W^{C \times C}_O = O^{hw \times C}$$
 
-因此MSA模块总计算量为 $4hwC^2 + 2(hw)^2C$
+因此MSA模块总计算量为 __$4hwC^2 + 2(hw)^2C$__。
