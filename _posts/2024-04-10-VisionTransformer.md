@@ -25,7 +25,7 @@ subtitle: '计算机视觉里的Transformer模型'
 
 ### 模型框架
 
-![smiley](/assets/Blogs/2024-04-10/Vit.jpg)
+![ViT Model](/assets/Blogs/2024-04-10/Vit.jpg)
 
 ### Multi-head Self-Attention（MSA）模块计算量
 
