@@ -21,11 +21,10 @@ subtitle: '计算机视觉里的Transformer模型'
 
 ## Vision  Transfomer（ViT）
 
-### 原文链接
-
-[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/pdf/2010.11929.pdf)
+原文链接： [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/pdf/2010.11929.pdf)
 
 ### 模型框架
+
 ![ViT 框架](../assets/Blogs/2024-04-10/Vit.png)
 
 ### Multi-head Self-Attention（MSA）模块计算量
