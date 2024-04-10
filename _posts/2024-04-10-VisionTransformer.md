@@ -1,13 +1,12 @@
 ---
 layout: post
-title:  "计算机视觉里的Transformer模型"
+title:  "计算机视觉 - Transformer"
 date:   2024-04-10 15:05:21 +0800
 tags:   ComputerVision Transformer
 color: rgb(255,90,90)
 cover: '../assets/Blogs/2024-04-10/Transformers.jpeg'
-subtitle: 'Notes'
+subtitle: '计算机视觉里的Transformer模型'
 ---
-# 计算机视觉里的Transformer模型
 
 ## Vision  Transfomer（ViT）
 
