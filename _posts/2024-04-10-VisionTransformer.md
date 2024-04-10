@@ -26,6 +26,7 @@ subtitle: '计算机视觉里的Transformer模型'
 [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/pdf/2010.11929.pdf)
 
 ### 模型框架
+![ViT 框架](../assets/Blogs/2024-04-10/Vit.png)
 
 ### Multi-head Self-Attention（MSA）模块计算量
 
@@ -62,4 +63,4 @@ $$ P^{hw \times hw} \cdot V^{hw \times C} = B ^{hw \times hw} $$
 
 $$B^{hw \times C} \cdot W^{C \times C}_O = O^{hw \times C}$$
 
-因此MSA模块总计算量为 __$4hwC^2 + 2(hw)^2C$__。
+因此MSA模块 __总计算量为$4hwC^2 + 2(hw)^2C$__。
