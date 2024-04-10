@@ -22,7 +22,9 @@ subtitle: '计算机视觉里的Transformer模型'
 
 这里假设 $Q, K, V$ 的向量长度与 feature map 的深度 $C$ 保持一致（ 即 $d_{model} = C$ ）。那么对应所有像素生成 $Q$ 的过程如下式：
 
-$$ A^{hw \times C} \cdot W_q^{C \times C} = Q^{hw \times C}$$
+```math
+A^{hw \times C} \cdot W_q^{C \times C} = Q^{hw \times C}
+```
 
 + $A^{hw \times C}$ ：将所有像素（token）拼接在一起得到的矩阵（一共有hw个像素，每个像素的深度为C）
 
