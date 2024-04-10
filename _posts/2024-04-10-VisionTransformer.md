@@ -1,4 +1,12 @@
-
+---
+layout: post
+title:  "计算机视觉 - Transformer"
+date:   2024-04-10 15:05:21 +0800
+tags:   ComputerVision Transformer
+color: rgb(255,90,90)
+cover: '../assets/Blogs/2024-04-10/Transformers.jpeg'
+subtitle: '计算机视觉里的Transformer模型'
+---
 <head>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
@@ -10,15 +18,6 @@
         });
     </script>
 </head>
----
-layout: post
-title:  "计算机视觉 - Transformer"
-date:   2024-04-10 15:05:21 +0800
-tags:   ComputerVision Transformer
-color: rgb(255,90,90)
-cover: '../assets/Blogs/2024-04-10/Transformers.jpeg'
-subtitle: '计算机视觉里的Transformer模型'
----
 
 ## Vision  Transfomer（ViT）
 
@@ -32,11 +31,9 @@ subtitle: '计算机视觉里的Transformer模型'
 
 #### 1. 通过 $W_q, W_k ,W_v$ 生成对应的 $Q, K, V$ 。
 
-这里假设 $`Q, K, V`$ 的向量长度与 feature map 的深度 $C$ 保持一致（ 即 $d_{model} = C$ ）。那么对应所有像素生成 $Q$ 的过程如下式：
+这里假设 $Q, K, V$ 的向量长度与 feature map 的深度 $C$ 保持一致（ 即 $d_{model} = C$ ）。那么对应所有像素生成 $Q$ 的过程如下式：
 
-```math
-A^{hw \times C} \cdot W_q^{C \times C} = Q^{hw \times C}
-```
+$$ A^{hw \times C} \cdot W_q^{C \times C} = Q^{hw \times C} $$
 
 + $A^{hw \times C}$ ：将所有像素（token）拼接在一起得到的矩阵（一共有hw个像素，每个像素的深度为C）
 
