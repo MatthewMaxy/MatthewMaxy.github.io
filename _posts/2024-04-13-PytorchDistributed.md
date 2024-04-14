@@ -64,7 +64,7 @@ for epoch in range(100):
 
 ## ⭐️ torch.distributed
 
-与 DataParallel 的单进程控制多 GPU 不同，使用distribud时，torch 会自动将其代码分配给 $n$ 个进程，分别在 $n$ 个 GPU 上运行.
+与 DataParallel 的单进程控制多 GPU 不同，使用distribud时，torch 会自动将其代码分配给$n$个进程，分别在$n$个 GPU 上运行.
 
 **nvidia-smi 进程信息:**
 
