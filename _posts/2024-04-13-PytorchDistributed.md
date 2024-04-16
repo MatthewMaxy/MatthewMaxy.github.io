@@ -2,7 +2,7 @@
 layout: post
 title:  "Pytorch模型分布式训练"
 date:   2024-04-13 23:44:18 +0800
-tags:   Projects Pytorch
+tags:   Project Pytorch
 color: rgb(32,71,146)
 cover: '../assets/Blogs/PytorchDistributed/main.png'
 subtitle: 'Pytorch模型的分布式训练方法与代码模板'
