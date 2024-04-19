@@ -171,22 +171,25 @@ ROC 曲线上每个点对应了代价平面上一条线段：
 + $f(x;D)$ 为训练集 $D$ 上学得模型 $f$ 在 $x$ 上的预测输出
 
 学习算法的期望预测结果为（当前算法的期望输出）
+
 $$ \overline{f(x)} = \mathbb{E}_D[f(\boldsymbol{x};D)]$$
 
 不同训练集产生的方差（训练集不同导致不同输出的方差）
+
 $$ var(x) = \mathbb{E}_D[(f(\boldsymbol{x};D) - \overline{f(x)})^2]$$
 
 噪声（真实标签和数据集标签差异）
+
 $$ \epsilon^2 = \mathbb{E}_D[(y_D - y)^2]$$
 
 期望输出与真实标记的差别（偏差bias）
+
 $$bias^2(x) = (\overline{f(x)} - y)^2$$
 
 假定噪声期望为0，可以对算法期望误差进行分解如下：
-$$
-\begin{aligned} E(f;D) &= \mathbb{E}_D[(f(\boldsymbol{x};D) - y_D)^2] \\ &= \dots \\ &= \mathbb{E}_D[(f(\boldsymbol{x};D) - \overline{f(x)})^2] + (\overline{f(x)} - y)^2 + \mathbb{E}_D[(y_D - y)^2] \\ &= bias^2(x) + var(x) + \epsilon^2
-\end{aligned}
-$$
+
+$$\begin{aligned} E(f;D) &= \mathbb{E}_D[(f(\boldsymbol{x};D) - y_D)^2] \\ &= \dots \\ &= \mathbb{E}_D[(f(\boldsymbol{x};D) - \overline{f(x)})^2] + (\overline{f(x)} - y)^2 + \mathbb{E}_D[(y_D - y)^2] \\ &= bias^2(x) + var(x) + \epsilon^2
+\end{aligned}$$
 
 即泛化误差可以分解为偏差、方差和噪声之和
 
