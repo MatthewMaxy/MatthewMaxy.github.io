@@ -20,7 +20,7 @@ subtitle: '准备夏令营和春招面试知识点总结 &#124;'
     </script>
 </head>
 
-## 绪论
+## 第一章 绪论
 
 ### 归纳偏好
 
@@ -41,7 +41,7 @@ $$\begin{aligned} \sum_{f}E_{ote}(\mathfrak{L}a\vert X,f) &= \sum_f\sum_h\sum_{\
 
 若有多个假设与观察一致，则选择最简单的那个
 
-## 模型评估与选择
+## 第二章 模型评估与选择
 
 ### 数据划分
 
@@ -118,9 +118,11 @@ $$F_\beta =  \frac{(1 + \beta ^ 2) \times P \times R}{(\beta ^ 2 \times P) + R}$
 多次测试（多个混淆矩阵）时关于$P, R, F1$的计算
 
 + 宏查全率、宏查准率、宏$F1$
+  
 $$\begin{array}{c}\text { macro- } P=\frac{1}{n} \sum_{i=1}^{n} P_{i} \\ \\ \text { macro- } R=\frac{1}{n} \sum_{i=1}^{n} R_{i} \\ \\ \text { macro- } F 1=\frac{2 \times \text { macro } P \times \text { macro }-R}{\text { macro- } P+\text { macro }-R}\end{array}$$
 
 + 微查全率、微查准率、微$F1$
+
 $$\begin{array}{c}\text { micro- } P=\frac{\overline{T P}}{\overline{T P}+\overline{F P}} \\ \\ \text { micro- } R=\frac{\overline{T P}}{\overline{T P}+\overline{F N}}, \\ \\ \text { micro- } F 1=\frac{2 \times \text { micro- } P \times \text { micro- } R}{\text { micro- } P+\text { micro- } R}\end{array}$$
 
 
