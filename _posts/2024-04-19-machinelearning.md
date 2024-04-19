@@ -125,5 +125,72 @@ $$\begin{array}{c}\text { macro- } P=\frac{1}{n} \sum_{i=1}^{n} P_{i} \\ \\ \tex
 
 $$\begin{array}{c}\text { micro- } P=\frac{\overline{T P}}{\overline{T P}+\overline{F P}} \\ \\ \text { micro- } R=\frac{\overline{T P}}{\overline{T P}+\overline{F N}}, \\ \\ \text { micro- } F 1=\frac{2 \times \text { micro- } P \times \text { micro- } R}{\text { micro- } P+\text { micro- } R}\end{array}$$
 
+#### ROC和AUC
 
+考虑：不知道如何划分阈值判断正负类时，对概率进行降序排列，按顺序逐个截断设为正类，其中 ROC 曲线纵轴是“真正例率”（TPR），横轴是“假正例率”（FPR）
 
+$$\mathrm{TPR}=\frac{T P}{T P+F N} \quad \quad \mathrm{FPR}=\frac{F P}{T N+F P} $$
+
+![ROC](/assets/Blogs/MachineLearning/3.png){:height="70%" width="70%"}
+
+**AUC 即为 ROC 曲线下方面积大小:**
+
+$$\begin{aligned} \text{AUC} &= 1 - \frac{1}{m^{+} m^{-}} \sum_{\boldsymbol{x}^{+} \in D^{+}} \sum_{\boldsymbol{x}^{-} \in D^{-}}\left(\mathbb{I}\left(f\left(\boldsymbol{x}^{+}\right)<f\left(\boldsymbol{x}^{-}\right)\right)+\frac{1}{2} \mathbb{I}\left(f\left(\boldsymbol{x}^{+}\right)=f\left(\boldsymbol{x}^{-}\right)\right)\right) \\ &= \frac{1}{2} \sum_{i=1}^{m-1}\left(x_{i+1}-x_{i}\right) \cdot\left(y_{i}+y_{i+1}\right) \end{aligned}
+$$
+
+### 代价敏感错误率和代价曲线
+
+主要解决分类错误代价不同问题 $cost_{ij}$ 表示把第 $i$ 类错判为 $j$ 的代价
+
+$$\begin{aligned} E(f ; D ; cost) &= \frac{1}{m}\left(\sum_{\boldsymbol{x}_{i} \in D^{+}} \mathbb{I}\left(f\left(\boldsymbol{x}_{i}\right) \neq y_{i}\right) \times \operatorname{cost}_{01}\right. \\ & \left.+\sum_{\boldsymbol{x}_{i} \in D^{-}} \mathbb{I}\left(f\left(\boldsymbol{x}_{i}\right) \neq y_{i}\right) \times \operatorname{cost}_{10}\right)  \end{aligned}$$
+
+相应的应该使用代价曲线（cost curve）衡量学习器期望代价：
+
+横坐标是取值 [0, 1] 的正例概率代价，其中 $p$ 是样例为正例的概率:
+
+$$P(+)cost = \frac{p \times cost_{01}}{p \times cost_{01} + (1-p) \times cost_{10}}$$
+
+纵轴是取值 [0, 1] 的归一化代价，其中 $FPR$ 是假正例率，$FNR = 1- TPR$ 是假反例率：
+
+$$cost_{norm} = \frac{FNR \times p \times cost_{01} + FPR \times(1-p) \times cost_{10} }{p \times cost_{01} + (1-p) \times cost_{10}}$$
+
+ROC 曲线上每个点对应了代价平面上一条线段：
+
++ 假设 ROC 曲线上点坐标 (FPR, TPR)，则在代价平面上有线段(0, FPR) 到 (1, TPR)
++ 线段下面积为该条件下期望总体代价
++ 所有线段下界围成面积为学习器的期望总体代价
+
+![代价曲线](/assets/Blogs/MachineLearning/5.png){:height="60%" width="60%"}
+
+### 偏差与方差
+
+偏差-方差分解尝试对学习算法的期望泛化错误率进行拆解
+
++ 以回归任务为例
++ 对测试样本 $x$，$y_D$ 为 $x$ 在数据集中的标记，$y$ 为 $x$ 的真实标记
++ $f(x;D)$ 为训练集 $D$ 上学得模型 $f$ 在 $x$ 上的预测输出
+
+学习算法的期望预测结果为（当前算法的期望输出）
+$$ \overline{f(x)} = \mathbb{E}_D[f(\boldsymbol{x};D)]$$
+
+不同训练集产生的方差（训练集不同导致不同输出的方差）
+$$ var(x) = \mathbb{E}_D[(f(\boldsymbol{x};D) - \overline{f(x)})^2]$$
+
+噪声（真实标签和数据集标签差异）
+$$ \epsilon^2 = \mathbb{E}_D[(y_D - y)^2]$$
+
+期望输出与真实标记的差别（偏差bias）
+$$bias^2(x) = (\overline{f(x)} - y)^2$$
+
+假定噪声期望为0，可以对算法期望误差进行分解如下：
+$$
+\begin{aligned} E(f;D) &= \mathbb{E}_D[(f(\boldsymbol{x};D) - y_D)^2] \\ &= \dots \\ &= \mathbb{E}_D[(f(\boldsymbol{x};D) - \overline{f(x)})^2] + (\overline{f(x)} - y)^2 + \mathbb{E}_D[(y_D - y)^2] \\ &= bias^2(x) + var(x) + \epsilon^2
+\end{aligned}
+$$
+
+即泛化误差可以分解为偏差、方差和噪声之和
+
++ 偏差即为训练不到位导致的，训练前期占主导作用
++ 方差是由于训练过拟合导致的，后期占主导作用
+
+![loss](/assets/Blogs/MachineLearning/4.png){:height="70%" width="70%"}
