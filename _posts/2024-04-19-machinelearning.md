@@ -4,7 +4,7 @@ title:  "机器学习知识点总结 "
 date:   2024-04-19 08:00:00 +0800
 tags:   MachineLearning
 color: rgb(66,118,91)
-cover: '../assets/Blogs/LangChain/title.png'
+cover: '../assets/Blogs/MachineLearning/title.png'
 subtitle: '准备夏令营和春招面试知识点总结 &#124;'
 ---
 <head>
