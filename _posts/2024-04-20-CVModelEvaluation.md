@@ -49,7 +49,7 @@ $$\text{IS(G)} = \text{exp}(\text{E}_{x~\text{P}_g} \text{KL}(p(y|x)||p(y)))$$
 
 + 图像 $x$ 是从生成数据的分布 $P_g$ 中采样的
 + KL 表示 KL 散度
-+ 对于 $p(y|x)$ 期望接近one-hot，而 $p(y)$ 接近均匀分布，因此 KL 散度值越大模型效果越好
++ 对于 $p(y \vert x)$ 期望接近one-hot，而 $p(y)$ 接近均匀分布，因此 KL 散度值越大模型效果越好
 
 #### 缺点
 
@@ -58,7 +58,6 @@ $$\text{IS(G)} = \text{exp}(\text{E}_{x~\text{P}_g} \text{KL}(p(y|x)||p(y)))$$
 + Inception Score高的图片不一定真实；且如果给一个不在1000类中的真实图，IS值可能很高
 + 检验多样性时，无法检测每个类别内图片一样存在的问题
 + 过拟合拷贝源数据集无法检测
-
 
 ### Frechet Inception Distance（FID）
 
