@@ -77,3 +77,11 @@ def calculate_fid(act1, act2):
     return fid
 
 ```
+
+### CLIP Score
+
+原文链接：[CLIP Score](https://aclanthology.org/2021.emnlp-main.595v2.pdf)
+
+CLIP score是一种用于评估 text2img 或者 img2img，模型生成的图像与原文本（prompt text）或者原图关联度大小的指标。
+
+将文本和图像对 (如为 text2img ) 输入到 OpenAI 的CLIP（Contrastive Language-Image Pre-training）模型后分别转换为特征向量，然后计算它们之间的余弦相似度。
