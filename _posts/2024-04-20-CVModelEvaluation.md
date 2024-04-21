@@ -20,6 +20,50 @@ subtitle: '计算机视觉领域各任务模型评价指标'
     </script>
 </head>
 
+## 目标检测领域
+
+### AP 和 mAP
+
+#### 关于 top1 和 top5 准确度
+
+top1：预测的概率向量里面最大的类别作为预测结果，该类必须是正确类别才算预测正确
+
+top5：预测的概率向量最大的前五名中出现了正确的类别，即为预测正确。
+
+#### PR 曲线（注意区分于roc曲线）
+
+k 个样本按照置信度分数降序排列，分别将每个假设为正类然后计算当前情况下的 Recall 和 Precious。以这 k 组（R，P）数据绘制 Recall 值为横轴，Precision 值为纵轴的 PR 曲线
+
+![pr](/assets/Blogs/CVModelEvaluation/1.png){:height="50%" width="50%"} ![pr](/assets/Blogs/CVModelEvaluation/2.png){:height="50%" width="50%"}
+
+#### AP（Average Precision）和 mAP
+
+AP为平均精度，使用积分的方式来计算PR曲线与坐标轴围成的面积。但是在实际应用中，对其平滑操作来简化计算，对PR曲线上的每个点，Precision的值取该点右侧最大的Precision的值
+
+对所有类别的 **AP** 值取平均即可得出整个数据集的 **mAP**
+
+#### Interplolated AP（Pascal Voc 2008 的AP计算方式）
+
+Pascal VOC 2008 中设置IoU的阈值为 0.5，即对于一个样本若被预测为正类有以下两种情况为FP：（1）IOU 小于阈值（2）此目标被重复检测且该样本IOU不是最大的
+
+对平滑后的PR曲线进行间隔 0.1 的均匀采样，取这11个点的 Precision 值（平滑后），计算其平均值为最终AP的值
+
+#### MS COCO mAP
+
+对于 COCO 数据集来说，使用的也是 Interplolated AP 的计算方式，但为了提高精度，在PR曲线上采样了 100 个点进行计算。而且Iou的阈值从 0.5 - 0.95 的区间上每隔 0.05 计算一次 AP 的值，取所有结果的平均值作为最终的结果。除了AP，还有其他衡量指标值，含义如下：
+
++ $AP_{50}$：IoU 阈值为 0.5 时的 AP 测量值
++ $AP_{75}$：IoU阈值为0.75时的 AP 测量值
++ $AP_{S}$：: 像素面积小于 $32^2$ 的目标框的 AP 测量值（小尺度）
++ $AP_{M}$：像素面积在 $32^2 - 96^2$ 之间目标框的 AP 测量值（中等尺度）
++ $AP_{L}$：像素面积大于 $96^2$ 的目标框的 AP 测量值（大尺度）
+
+注意：COCO 语境下的 AP 已经对所有类别平均，即为一般意义的 mAP
+
+
+
+
+
 ## 图像生成领域
 
 ### Inception Score（IS）
