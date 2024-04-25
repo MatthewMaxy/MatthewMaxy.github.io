@@ -225,21 +225,21 @@ $$ b = \frac{1}{m} \sum_{i=1}^m (y_i - w_ix_i)$$
 
 #### 多元线性回归（一般情况）
 
-若对于数据集 $D$，样本由 $d$ 个属性描述，仍可以利用最小二乘法思路求解。为方便，作出如下规定：
+若对于数据集 $D$，样本由 $d$ 个属性描述，仍可以用最小二乘法思路求解。为方便作出如下规定：
 
-1. 假设最后的 b 是样本的一个特征产生的，但因为对于所有样本保持一致，因此定为 1
+假设最后的 b 是样本的一个特征产生的，但因为对于所有样本保持一致，因此定为 1
 
 \\[X = \begin{pmatrix} x_{11} & x_{12} & \dots & x_{1d} & 1 \\\ x_{21} & x_{22} & \dots & x_{2d} & 1 \\\ \vdots & \vdots & \ddots & \vdots & \vdots \\\ x_{m1} & x_{m2} & \dots & x_{md} & 1 \end{pmatrix} = \begin{pmatrix} \mathbf{x}_1^T & 1 \\\ \mathbf{x}_2^T & 1 \\\ \vdots & \vdots \\\ \mathbf{x}_m^T & 1 \end{pmatrix} \\]
 
-2. 相应的将 $b$ 融入 $\boldsymbol{w}$ 权重矩阵构成 $\boldsymbol{\hat{w}} = (\boldsymbol{w};b)$，标记也表示为 $\boldsymbol{y} = (y_1;y_2;...;y_m)$
+相应的将 $b$ 融入 $\boldsymbol{w}$ 权重矩阵构成 $\boldsymbol{\hat{w}} = (\boldsymbol{w};b)$，标记也表示为 $\boldsymbol{y} = (y_1;y_2;...;y_m)$
 
-3. 可得最小化目标，及求解结果如下：
+可得最小化目标，及求解结果如下：
 
 $$ w^* = \arg \min_{\boldsymbol{\hat{w}}} (\boldsymbol{y} – \boldsymbol{X} \boldsymbol{\hat{w}})^T(\boldsymbol{y} – \boldsymbol{X} \boldsymbol{\hat{w}})$$
 
 $$ \frac{\partial E(\boldsymbol{\hat{w}})}{\partial \boldsymbol{\hat{w}}} = 2 \boldsymbol{X}^T ( \boldsymbol{X} \boldsymbol{\hat{w}} – \boldsymbol{y}) $$
 
-4. 求解闭式解时涉及逆矩阵运算，因此当 $\boldsymbol{X}^T\boldsymbol{X}$ 满秩时可以求解得到
+求解闭式解时涉及逆矩阵运算，因此当 $\boldsymbol{X}^T\boldsymbol{X}$ 满秩时可以求解得到
 
 $$\boldsymbol{\hat{w}^*} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}$$
 
