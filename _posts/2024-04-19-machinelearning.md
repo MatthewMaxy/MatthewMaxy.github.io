@@ -251,12 +251,12 @@ $$\boldsymbol{\hat{w}^*} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T
 #### 广义线性模型
 
 考虑单调可微函数 $g(\cdot)$ 使得
+
 $$y = g^{-1}(\boldsymbol{w}^T\boldsymbol{x} + b)$$
 
 其中一个典型案例：对数线性回归，实际上让 $e^{\boldsymbol{w}^T\boldsymbol{x} + b}$ 逼近 y
-$$
-\ln(y) = \boldsymbol{w}^T\boldsymbol{x} + b
-$$
+
+$$\ln(y) = \boldsymbol{w}^T\boldsymbol{x} + b$$
 
 ![ln](/assets/Blogs/MachineLearning/6.png){:height="50%" width="50%"}
 
