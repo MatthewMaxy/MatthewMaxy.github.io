@@ -313,10 +313,8 @@ $$\boldsymbol{\beta}^* = \arg \min_{\boldsymbol{\beta}} \ell(\boldsymbol{\beta})
 $$\begin{aligned} J &=\frac{\left\Vert \boldsymbol{w}^{T}\boldsymbol{\mu}_{0}-\boldsymbol{w}^{T}\boldsymbol{\mu}_{1}\right\Vert ^{2}}{\boldsymbol{w}^{T}\boldsymbol{\Sigma} _{0}\boldsymbol{w}+\boldsymbol{w}^{T}\boldsymbol{\Sigma}_{1}\boldsymbol{w}} \\ \\ &=\frac{\boldsymbol{w}^{T}\left(\boldsymbol{\mu} _{0}-\boldsymbol{\mu}_{1}\right)\left(\boldsymbol{\mu}_{0}-\boldsymbol{\mu}_{1}\right)^{T}\boldsymbol{w}}{\boldsymbol{w}^{T}\left(\boldsymbol{\Sigma} _{0}+\boldsymbol{\Sigma}_{1}\right)\boldsymbol{w}}
 = \frac{\boldsymbol{w}^{T}\boldsymbol{S_b}\boldsymbol{w}}{\boldsymbol{w}^{T}\boldsymbol{S_w}\boldsymbol{w}}\end{aligned}$$
 
-+ 同类投影点尽可能近：同类投影点的协方差尽可能小
-  + $\boldsymbol{w}^{T}\boldsymbol{\Sigma}{0}\boldsymbol{w} + \boldsymbol{w}^{T}\boldsymbol{\Sigma}_{1}\boldsymbol{w}$尽可能小
-+ 异类投影点尽可能远离：类中心之间的距离尽可能大
-  + $\left\Vert \boldsymbol{w}^{T}\boldsymbol{\mu}_0 - \boldsymbol{w}^{T}\boldsymbol{\mu}_1\right\Vert ^{2}$尽可能大
++ 同类投影点尽可能近：同类投影点的协方差 $\boldsymbol{w}^{T}\boldsymbol{\Sigma}_0\boldsymbol{w} + \boldsymbol{w}^{T}\boldsymbol{\Sigma}_{1}\boldsymbol{w}$ 尽可能小
++ 异类投影点尽可能远离：类中心之间的距离 $\left\Vert \boldsymbol{w}^{T}\boldsymbol{\mu}_0 - \boldsymbol{w}^{T}\boldsymbol{\mu}_1\right\Vert ^2$ 尽可能大
 + 即最大化 $\boldsymbol{S_b}$ 和 $\boldsymbol{S_w}$ 的广义瑞利商
 
 经过化简后可以得到
