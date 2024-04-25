@@ -258,4 +258,29 @@ $$
 \ln(y) = \boldsymbol{w}^T\boldsymbol{x} + b
 $$
 
-![ln](/assets/Blogs/MachineLearning/6.png){:height="50%" width="70%"}
+![ln](/assets/Blogs/MachineLearning/6.png){:height="50%" width="50%"}
+
+### 对数几率回归（Logistic Regression）
+
+考虑利用线性模型解决分类问题，只需找一个单调可微函数将分类任务的真实标记 $y$ 与线性回归模型的预测值联系起来(可参考广义线性模型)
+
+对数几率回归选用的单调可微函数是一种 Sigmoid 函数(有时会讲这个函数就叫 Sigmoid，但一般 Sigmoid 其实是指形似 S 的系列函数，和阶跃函数相比如下图)
+
+![sigmoid](/assets/Blogs/MachineLearning/7.png){:height="50%" width="50%"}
+
+$$
+S(z) = \frac{1}{1+ e^{-z}} \quad \text{求导性质}：S'(z) = S(z)(1-S(z)) 
+$$
+
+参考广义线性模型，将 $S$ 作为 $g( \cdot)$ 带入可以得到
+
+$$
+y = \frac{1}{1+ e^{-(\boldsymbol{w}^T\boldsymbol{x} + b)}} \quad  \ln{\frac{y}{1-y} = \boldsymbol{w}^T\boldsymbol{x} + b}
+$$
+
+可以将$y$ 视为分类为正例概率，$1-y$ 为负例概率
+
+#### 如何求解 $\boldsymbol{\beta}$
+
+假设 $\boldsymbol{\beta} = (\boldsymbol{w};b)$，利用极大似然法得到最小化目标函数：
+$ $
