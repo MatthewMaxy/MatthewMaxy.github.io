@@ -197,3 +197,65 @@ $$\begin{aligned} E(f;D) &= \mathbb{E}_D[(f(\boldsymbol{x};D) - y_D)^2] \\ &= \d
 + 方差是由于训练过拟合导致的，后期占主导作用
 
 ![loss](/assets/Blogs/MachineLearning/4.png){:height="70%" width="70%"}
+
+## 线性模型
+
+### 基本形式
+
+$$f(\boldsymbol{x}) = \boldsymbol{w}^T\boldsymbol{x} + b$$
+
++ 线性模型具有良好的可解释性
++ 许多非线性可以通过在线性基础上引入层级结构或高维映射实现
+
+### 线性回归（Linear Regression）
+
+给定数据集 $D =\{(\boldsymbol{x}_1,y_1),(\boldsymbol{x}_2,y_2),...,(\boldsymbol{x}_m,y_m)\}$，其中 $\boldsymbol{x}=(\boldsymbol{x}_{i1};\boldsymbol{x}_{i2}; ... ;\boldsymbol{x}_{id})，y_i \in \mathbb{R}$
+
+线性回归试图学得 $f(x_i) = w^T x_i + b$ 使得 $f(x_i) \simeq y_i$，即为学习
+
+$$\begin{split}(w^*,b^*) &= \arg\min_{(w,b)} \sum_{i=1}^m (f(x_i)-y_i)^2 \\\ &= \arg\min_{(w,b)} \sum_{i=1}^m (y_i-wx_i-b)^2\end{split}$$
+
+#### 最小二乘法
+
+最小二乘法可以实现对 $w, b$ 分别求偏导，得到 $w, b$ 最优解的闭式解（此处假设x只有一维）
+
+$$ w = \frac{\sum_{i=1}^{m}y_i(x_i - \bar{x})}{\sqrt{m\sum_{i=1}^{m}x_i^2 - \left(\sum_{i=1}^{m}x_i\right)^2}}$$
+
+$$ b = \frac{1}{m} \sum_{i=1}^m (y_i - w_ix_i)$$
+
+#### 多元线性回归（一般情况）
+
+若对于数据集 $D$，样本由 $d$ 个属性描述，仍可以利用最小二乘法思路求解。为方便，作出如下规定：
+
+1. 假设最后的 b 是样本的一个特征产生的，但因为对于所有样本保持一致，因此定为 1
+$$ X = \begin{pmatrix} x_{11} & x_{12} & \dots & x_{1d} & 1 \\\ x_{21} & x_{22} & \dots & x_{2d} & 1 \\\ \vdots & \vdots & \ddots & \vdots & \vdots \\\ x_{m1} & x_{m2} & \dots & x_{md} & 1 \end{pmatrix} = \begin{pmatrix} \mathbf{x}_1^T & 1 \\\ \mathbf{x}_2^T & 1 \\\ \vdots & \vdots \\\ \mathbf{x}_m^T & 1 \end{pmatrix} $$
+
+2. 相应的将 $b$ 融入 $\boldsymbol{w}$ 权重矩阵构成 $\boldsymbol{\hat{w}} = (\boldsymbol{w};b)$，标记也表示为 $\boldsymbol{y} = (y_1;y_2;...;y_m)$
+
+3. 可得最小化目标，及求解结果如下：
+
+$$ w^* = \arg \min_{\boldsymbol{\hat{w}}} (\boldsymbol{y} – \boldsymbol{X} \boldsymbol{\hat{w}})^T(\boldsymbol{y} – \boldsymbol{X} \boldsymbol{\hat{w}})$$
+
+$$
+\frac{\partial E(\boldsymbol{\hat{w}})}{\partial \boldsymbol{\hat{w}}} = 2 \boldsymbol{X}^T ( \boldsymbol{X} \boldsymbol{\hat{w}} – \boldsymbol{y})
+$$
+4. 求解闭式解时涉及逆矩阵运算，因此当 $\boldsymbol{X}^T\boldsymbol{X}$ 满秩时可以求解得到
+
+$$\boldsymbol{\hat{w}^*} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}$$
+
+为什么一般不用逆矩阵：
++ 样例数少于属性数目导致不满秩
++ 多个维度线性相关导致不满秩
++ 矩阵乘法后值过大，取逆后小于最小精度
+
+#### 广义线性模型
+
+考虑单调可微函数 $g(\cdot)$ 使得
+$$y = g^{-1}(\boldsymbol{w}^T\boldsymbol{x} + b)$$
+
+其中一个典型案例：对数线性回归，实际上让 $e^{\boldsymbol{w}^T\boldsymbol{x} + b}$ 逼近 y
+$$
+\ln(y) = \boldsymbol{w}^T\boldsymbol{x} + b
+$$
+
+![ln](/assets/Blogs/MachineLearning/6.png){:height="50%" width="70%"}
