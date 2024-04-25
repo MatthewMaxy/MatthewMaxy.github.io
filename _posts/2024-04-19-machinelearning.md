@@ -283,4 +283,101 @@ $$
 #### 如何求解 $\boldsymbol{\beta}$
 
 假设 $\boldsymbol{\beta} = (\boldsymbol{w};b)$，利用极大似然法得到最小化目标函数：
-$ $
+
+$$ \ell(\boldsymbol{\beta}) = \sum_{i=1}^{m} (-y_i \boldsymbol{\beta}^T \boldsymbol{\hat{x_i}} + \ln(1+e^{\boldsymbol{\beta}^T \boldsymbol{\hat{x_i}}}))$$
+
+可以利用诸如梯度下降法、牛顿法等进行最优解的求解，即可得到
+
+$$\boldsymbol{\beta}^* = \arg \min_{\boldsymbol{\beta}} \ell(\boldsymbol{\beta})$$
+
+具体推导过程可见：[推导过程](https://datawhalechina.github.io/pumpkin-book/#/chapter3/chapter3?id=_327)
+
+### 线性判别分析（LDA）
+
+给定训练样例集，设法将样例投影到一条直线上，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离；在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别
+
+![LDA](/assets/Blogs/MachineLearning/8.png){:height="50%" width="50%"}
+
+#### 二分类问题
+
+给定数据集 $D = \lbrace (\boldsymbol{x_i}, y_i) \rbrace_{i=1}^m$，$y_i \in \lbrace 0,1 \rbrace$
++ $\boldsymbol{X_i}, \boldsymbol{\mu_i}, \boldsymbol{\Sigma_i}$ 分别表示第 $i \in \lbrace 0,1 \rbrace$ 类示例的集合、均值向量、协方差矩阵
++ 将数据投影到直线 $\boldsymbol{w}$ 上
+  + 两类样本的中心在直线上的投影分别为 $\boldsymbol{w^T\mu_0}$ 和 $\boldsymbol{w^T\mu_1}$
+  + 两类样本的协方差分别为 $\boldsymbol{w^T\Sigma_0w}$ 和 $\boldsymbol{w^T\Sigma_1w}$
+
+最大化目标：
+$$
+\begin{aligned}
+J &=\frac{\left\Vert \boldsymbol{w}^{T}\boldsymbol{\mu}_{0}-\boldsymbol{w}^{T}\boldsymbol{\mu}_{1}\right\Vert ^{2}}{\boldsymbol{w}^{T}\boldsymbol{\Sigma} _{0}\boldsymbol{w}+\boldsymbol{w}^{T}\boldsymbol{\Sigma}_{1}\boldsymbol{w}} \\ \\
+
+&=\frac{\boldsymbol{w}^{T}\left(\boldsymbol{\mu} _{0}-\boldsymbol{\mu}_{1}\right)\left(\boldsymbol{\mu}_{0}-\boldsymbol{\mu}_{1}\right)^{T}\boldsymbol{w}}{\boldsymbol{w}^{T}\left(\boldsymbol{\Sigma} _{0}+\boldsymbol{\Sigma}_{1}\right)\boldsymbol{w}}
+= \frac{\boldsymbol{w}^{T}\boldsymbol{S_b}\boldsymbol{w}}{\boldsymbol{w}^{T}\boldsymbol{S_w}\boldsymbol{w}}
+\end{aligned}$$
+
++ 同类投影点尽可能近：同类投影点的协方差尽可能小（$\boldsymbol{w}^{T}\boldsymbol{\Sigma} _{0}\boldsymbol{w}+\boldsymbol{w}^{T}\boldsymbol{\Sigma}_{1}\boldsymbol{w}$）
++ 异类投影点尽可能远离：类中心之间的距离尽可能大（$\left\Vert \boldsymbol{w}^{T}\boldsymbol{\mu}_{0}-\boldsymbol{w}^{T}\boldsymbol{\mu}_{1}\right\Vert ^{2}$）
++ 即最大化$\boldsymbol{S_b}$ 和 $\boldsymbol{S_w}$ 的广义瑞利商
+
+经过化简后可以得到
+
+$$\boldsymbol{w} = \boldsymbol{S_w}^{-1}(\boldsymbol{\mu_0} - \boldsymbol{\mu_1})$$
+
+具体推导过程可见：[推导过程](https://datawhalechina.github.io/pumpkin-book/#/chapter3/chapter3?id=_332)
+
+#### 多分类推广
+
+多分类问题中LDA的基本流程：
+
++ 计算每个类别的均值 $\mu_i$，全局样本均值 $\mu$
++ 计算类内散度矩阵 $S_w，全局散度矩阵 $S_t$，类间散度矩阵 $S_b$
++ 对矩阵 $S_w^{-1}S_b$ 做特征值分解
++ 取最大的 $d' \leq N -1$ 个特征值所对应的特征向量
++ 计算投影矩阵 $W$
+
+**注意：** LDA在降维时利用了类别信息，是一种有监督的降维方法
+
+### 多分类学习
+
+#### OvO 和 OvR
+
+![OvOR](/assets/Blogs/MachineLearning/9.png){:height="70%" width="70%"}
+
++ **存储测试：** OvR 需训练 N 个分类器；OvO 需训练 N(N-1)/2 个分类器，OvO的存储、测试时间开销通常比 OvR 更大
++ **训练：** OvR 的每个分类器均使用全部训练样例，OvO 的每个分类器仅用到两个类的样例，因此OvO 的训练更快
++ **预测性能：** 取决于具体的数据分布，在多数情形下两者差不多
+
+#### MvM：纠错输出码（ECOC）
+
++ **编码:** 对 N 个类别做 M 次划分,每次划分将一部分类别划为正类,一部分划为反类，从而形成一个二分类训练集;这样一共产生 M 个训练集,可训练出 M 个分类器
++ **解码:** M 个分类器分别对测试样本进行预测，这些预测标记组成一个编码，将这个预测编码与每个类别各自的编码进行比较，返回其中距离最小的类别作为最终预测结果
+
+![ECOC](/assets/Blogs/MachineLearning/10.png){:height="70%" width="70%"}
+
+### 类别不平衡问题
+
+#### 阈值移动（再缩放）
+
+一般情况下，分类器决策规则为:
+
+$$\frac{y}{1-y} > 1 \qquad 则预测为正例$$
+
+考虑到正负样本数量不同，假设正例数目为$m^+$，负例数目为$m^-$，则对决策策略进行修改（left）。但分类器决策还是基于1进行决策，因此可以对预测值进行缩放（right）
+
+$$
+\frac{y}{1-y} > \frac{m^+}{m^-} \quad 则预测为正例；\qquad \frac{y'}{1-y'} = \frac{y}{1-y} \times \frac{m^-}{m^+} 
+$$
+
+也是[代价敏感学习](#代价敏感错误率和代价曲线)的基础，即用 $cost^+/cost^-$ 代替 $m^-/m^+$
+
+#### 欠采样
+
+直接对训练集里的反类样例进行“欠采样”(undersampling)，即去除些反例使得正、反例数目接近，然后再进行学习
+
++ 损失数据可能导致部分性质丢失（欠拟合）
+
+#### 过采样
+
+对训练集里的正类样例进行“过采样”(oversampling)，即增加一些正例使得正、反例数目接近，然后再进行学习
+
++ 简单重复采样可能导致严重过拟合
