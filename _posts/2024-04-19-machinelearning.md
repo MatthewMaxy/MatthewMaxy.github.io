@@ -198,7 +198,7 @@ $$\begin{aligned} E(f;D) &= \mathbb{E}_D[(f(\boldsymbol{x};D) - y_D)^2] \\ &= \d
 
 ![loss](/assets/Blogs/MachineLearning/4.png){:height="70%" width="70%"}
 
-## 线性模型
+## 第三章 线性模型
 
 ### 基本形式
 
@@ -228,7 +228,8 @@ $$ b = \frac{1}{m} \sum_{i=1}^m (y_i - w_ix_i)$$
 若对于数据集 $D$，样本由 $d$ 个属性描述，仍可以利用最小二乘法思路求解。为方便，作出如下规定：
 
 1. 假设最后的 b 是样本的一个特征产生的，但因为对于所有样本保持一致，因此定为 1
-$$ X = \begin{pmatrix} x_{11} & x_{12} & \dots & x_{1d} & 1 \\\ x_{21} & x_{22} & \dots & x_{2d} & 1 \\\ \vdots & \vdots & \ddots & \vdots & \vdots \\\ x_{m1} & x_{m2} & \dots & x_{md} & 1 \end{pmatrix} = \begin{pmatrix} \mathbf{x}_1^T & 1 \\\ \mathbf{x}_2^T & 1 \\\ \vdots & \vdots \\\ \mathbf{x}_m^T & 1 \end{pmatrix} $$
+
+\\[X = \begin{pmatrix} x_{11} & x_{12} & \dots & x_{1d} & 1 \\\ x_{21} & x_{22} & \dots & x_{2d} & 1 \\\ \vdots & \vdots & \ddots & \vdots & \vdots \\\ x_{m1} & x_{m2} & \dots & x_{md} & 1 \end{pmatrix} = \begin{pmatrix} \mathbf{x}_1^T & 1 \\\ \mathbf{x}_2^T & 1 \\\ \vdots & \vdots \\\ \mathbf{x}_m^T & 1 \end{pmatrix} \\]
 
 2. 相应的将 $b$ 融入 $\boldsymbol{w}$ 权重矩阵构成 $\boldsymbol{\hat{w}} = (\boldsymbol{w};b)$，标记也表示为 $\boldsymbol{y} = (y_1;y_2;...;y_m)$
 
@@ -381,3 +382,4 @@ $$
 对训练集里的正类样例进行“过采样”(oversampling)，即增加一些正例使得正、反例数目接近，然后再进行学习
 
 + 简单重复采样可能导致严重过拟合
+
