@@ -380,7 +380,7 @@ $$
 
 + 简单重复采样可能导致严重过拟合
 
-## 决策树
+## 第四章 决策树
 
 ### 学习基本算法
 
@@ -421,11 +421,10 @@ $$
 
 #### 信息熵（前置知识）
 
-
 $$\text{Ent}(D)=-\sum_{k=1}^{|\mathcal{Y}|}p_k\log_2 p_k$$
 
 + $\text{Ent}(D)$ 表示数据集 $D$ 的信息熵，越小意味着 $D$ 的纯度越高
-+ 数据集 $D$ 中第 $k$ 类样本占比为 $p_k (k=1,2,\dots, \left | \mathcal{Y} \right |)$
++ 数据集 $D$ 中第 $k$ 类样本占比为 $p_k (k=1,2,\dots, | \mathcal{Y} |)$
 
 #### 信息增益（ID3）
 
@@ -434,5 +433,105 @@ $$\text{Gain}(D,a)= \text{Ent}(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}\text{Ent}(D^v)
 + 离散属性 $a$ 有 $V$ 个可能的取值 $\{a^1,a^2,...,a^V\}$
 + 若用 $a$ 划分，会产生 $V$ 个分支，其中第 $v$ 个结点包含所有取值为 $a^v$ 的样本,记为$D^v$ 
 + 依据各节点包含样本数目进行加权求和，计算本次划分能降低多少信息熵，即信息增益
-+ 选择属性 $a^* = \arg \max_{a \in A} Gain(D,a)$ 进行划分
++ 选择属性 $a_* = \arg \max_{a \in A} Gain(D,a)$ 进行划分
 
+#### 增益率（C4.5）
+
+信息增益偏好于可取值数目较多的属性，例如序号（每个序号分一个节点可以让信息增益最大，信息熵为0）。因此需要基于属性本身进行约束。
+
+$$ Gain\_ratio(D, a) = \frac{Gain(D, a)}{IV(a)}$$
+
+其中 $IV(a)$ 为属性固有值，一属性可能取值数目越多则 $IV(a)$ 通常会越大，计算公式如下：
+
+$$ IV(a) = \sum_{v=1}^{V} \frac{|D^v|}{|D|} \log_2 \frac{|D^v|}{|D|} $$
+
+注：**增益率划分可能对取值数目较少的属性有偏好**，因此一般采用启发式的操作：先从候选划分属性中找出信息增益高于平均水平的属性，再从中选择增益率最高的
+
+#### 基尼指数（CART）
+
+数据集 $D$ 的纯度可以用基尼值衡量：
+
+$$\begin{aligned} \text{Gini}(D) &= \sum_{k=1}^{|\mathcal{Y}| } \sum_{k' \not= k} p_kp_{k'} \\ &= 1-\sum_{k=1}^{|\mathcal{Y}| }p_k^2 \end{aligned}$$
+
+基尼值反映了从数据集中随机抽取两个样本，标记类别不一致的概率，因此基尼值越小纯度越高
+
+基尼指数定义如下，选择属性 $a_* = \arg \min_{a \in A} Gini_index(D,a)$ 进行划分
+
+$$Gini\_index(D, a) = \sum_{v=1}^{V}{\frac{|D^v|}{|D|}}Gini(D^v)$$
+
+### 剪枝
+
+#### 预剪枝
+
+基本策略与优缺点：
++ 生成过程中，每个节点划分前进行评估：不能提升泛化性能则将当前节点标记为叶子
++ 优点：降低了过拟合的风险、减少了训练和测试的时间开销
++ 缺点：基于贪心限制节点分裂，带来欠拟合风险
+
+#### 后剪枝
+
+基本策略与优缺点：
++ 首先生成一棵完整决策树，自下而上考察非叶节点，若换成叶子可以提升性能则替换
++ 如果性能不变按照 Occam's razor 也应替换为叶子
++ 优点：保留了更多的分支，欠拟合风险更小
++ 缺点：先生成再剪枝，因此训练时间开销更大
+
+### 连续值、缺失值处理
+
+#### 连续值处理
+
+基本思路：连续变量离散化进而采用二分策略，即对原连续特征的值排序后（假设 $n$ 个取值），对每两个相邻值的平均值 $t$ 做为候选划分点，共有 $n-1$ 个候选划分点
+
+$$\begin{aligned} \text{Gain}(D,a) &= \max_{t \in T_a} \text{Gain}(D,a,t) \\ &=\max_{t \in T_a} \text{Ent}(D)-\sum_{\lambda \in \{+,-\}} \frac{|D_t^{\lambda}|}{|D|} \text{Ent}(D_t^{\lambda}) \end{aligned}$$
+
++ $Gain(D, a, t)$ 为基于划分点 $t$ 二分后的信息增益
++ $D_t^+$ 和 $D_t^-$ 分别表示那些在属性 $a$ 上不小于（大于）$t$ 的样本
+
+#### 缺失值处理
+
+核心问题：
++ 如何在属性值缺失的情况下进行划分属性选择
++ 给定划分属性,若样本在该属性上的值缺失,如何对样本进行划分?
+
+符号定义如下：
++ 假定数据集 $D$，属性 $a$，特征 $a$ 有 $V$ 个取值
++ $\tilde{D}$ 为 $D$ 中在属性 $a$ 上没有缺失值的样本子集
++ $\tilde{D}^v$ 为 $\tilde{D}$ 中在属性 $a$ 上取值为 $v$ 的样本子集
++ $\tilde{D}_k$ 为 $\tilde{D}$ 中属于第 $k$ 类的样本子集
++ 每个样本 $x$ 赋予权重 $w_x$
+
+$$
+\begin{aligned} & \rho = \frac{\Sigma_{x\in \tilde{D}}  w_x}{\Sigma_{x\in D} w_x} \\
+
+& \tilde{p}_k = \frac{\Sigma_{x\in \tilde{D}_k} w_x}{\Sigma_{x\in \tilde{D}}  w_x} \quad (1\le k\le |\mathcal{Y}|) \\
+
+& \tilde{r}_v = \frac{\Sigma_{x\in \tilde{D}^v}  w_x}{\Sigma_{x\in \tilde{D}} w_x} \quad (1\le v\le V) \end{aligned}$$
+
++ $\rho$ 表示无缺失值样本所占的比例
++ $\tilde{p}_k$ 表示无缺失值样本中第 $k$ 类所占的比例
++ $\tilde{r}_v$ 表示无缺失值样本中在属性 $a$ 上取值 $a^v$ 的样本所占的比例
+
+针对问题（1）即训练时，信息增益表达式可以得到推广：
+
+$$\begin{aligned} Gain(D, a) &= \rho \times Gain(\tilde{D}, a) \\ 
+&= \rho \times \left(Ent (\tilde{D}) - \sum_{v=1}^{V} \tilde{r}_{v} Ent (\tilde{D}^{v}) \right) \end{aligned}$$
+
+$$\text{Ent}(\tilde{D}) = -\sum_{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log_2 \tilde{p}_k$$
+
+针对问题（2）即推理时:
++ 若样本 $x$ 在划分属性 $a$ 上的取值已知:
+  + 将 $x$ 划入与其取值对应的子结点
+  + 样本权值在子结点中保持为 $w_x$
++ 若样本 $x$ 在划分属性 $a$ 上的取值未知:
+  + 将 $x$ 同时划入所有子结点
+  + 样本权值在与属性值 $a^v$ 对应的子结点中调整为 $\tilde{r}_v \cdot w_x$
+
+### 多变量决策树
+
+首先考虑对于单变量决策树模型的决策边界：
+
+![Tree](/assets/Blogs/MachineLearning/11.png){:height="50%" width="70%"} ![line](/assets/Blogs/MachineLearning/12.png){:height="70%" width="50%"}
+
+若能使用斜线划分，数模型将进一步简化。因此尝试对每个节点采用多个属性进行线性组合，即每个非叶节点是一个形如 $\Sigma_{i=1}^dw_ia_i$ 的线性分类器，构建多变量决策树和相应的决策边界示意如下
+
+![Tree](/assets/Blogs/MachineLearning/13.png){:height="50%" width="70%"} ![line](/assets/Blogs/MachineLearning/14.png){:height="70%" width="50%"}
