@@ -530,8 +530,8 @@ $$\text{Ent}(\tilde{D}) = -\sum_{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log_2 \tilde{
 
 首先考虑对于单变量决策树模型的决策边界：
 
-![Tree](/assets/Blogs/MachineLearning/11.png){:height="30%" width="30%"} ![line](/assets/Blogs/MachineLearning/12.png){:height="30%" width="30%"}
+![Tree](/assets/Blogs/MachineLearning/11.png){:height="30%" width="30%"}![line](/assets/Blogs/MachineLearning/12.png){:height="30%" width="30%"}
 
 若能使用斜线划分，数模型将进一步简化。因此尝试对每个节点采用多个属性进行线性组合，即每个非叶节点是一个形如 $\Sigma_{i=1}^dw_ia_i$ 的线性分类器，构建多变量决策树和相应的决策边界示意如下
 
-![Tree](/assets/Blogs/MachineLearning/13.png){:height="30%" width="30%"} ![line](/assets/Blogs/MachineLearning/14.png){:height="30%" width="30%"}
+![Tree](/assets/Blogs/MachineLearning/13.png){:height="30%" width="30%"}![line](/assets/Blogs/MachineLearning/14.png){:height="30%" width="30%"}
