@@ -537,4 +537,270 @@ $$\text{Ent}(\tilde{D}) = -\sum_{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log_2 \tilde{
 
 ![Tree](/assets/Blogs/MachineLearning/13.png){:height="30%" width="30%"}![line](/assets/Blogs/MachineLearning/14.png){:height="30%" width="30%"}
 
+## 神经网络
+
+### 单层感知机
+
+**输出：**
+
+$$y = f(\sum_{i=1}^nw_ix_i-\theta)$$
+
++ $f$ 为激活函数，通常为 Sigmoid 函数
++ $w_i$ 为各输入权重， $\theta$ 为阈值
++ 训练时可以将 $\theta$ 看为一个输入固定为 -1.0，权重为 $w_{n+1}$ 的哑节点
+
+**权重调整策略：**
+
+$$w_i \leftarrow w_i + \Delta w_i \qquad \Delta w_i = \eta (y - \hat{y})x_i$$
+
+单层感知机只能解决线性可分问题。面对非线性可分问题，如“异或”，则需要使用多层感知机，也可以叫多层前馈神经网络
+
+### 误差逆传播算法（BP算法）
+
+#### 符号说明
+
+用来解决多层感知机的训练问题，符号说明如下
+
++ 数据集：$D = \lbrace (x_1, y_1), (x_2, y_2), \dots, (x_m, y_m) \rbrace$ ,  $x_i \in R^d$ , $y_i \in R^l$
++ 网络结构：$d$ 个输入神经元、$l$ 个输出神经元、$q$ 个隐层神经元
++ 神经元阈值：
+  + $\theta_j$：输出层第 $j$ 个神经元的阈值
+  + $\gamma_h$：隐层第 $h$ 个神经元的阈值
++ 神经元连接权重：
+  + $v_{ih}$：输入层第 $i$ 个神经元与隐层第 $h$ 个神经元之间的连接权
+  + $w_{hj}$：隐层第 $h$ 个神经元与输出层第 $j$ 个神经元之间的连接权 
++ 神经元输入输出：
+  + $\alpha_h = \sum_{i=1}^d v_{ih}x_i$：隐层第 $h$ 个神经元接收到的输入
+  + $b_h$：隐层第 $h$ 个神经元的输出
+  + $\beta_j = \sum_{h=1}^q w_{hj}b_h$：输出层第 $j$ 个神经元接收到的输入
++ 对训练样本 $(x_k, y_k)$
+  + 神经网络输出： $\hat{y}_k = (\hat{y}_1^k,\hat{y}_2^k,\dots \hat{y}_l^k)$
+  + $\hat{y}_j^k = f(\beta_j - \theta_j)$
+  + 均方误差为：$E_k = \frac{1}{2}\Sigma_{j=1}^l(\hat{y}_j^k-y_j^k)^2$
+
+共有 $(d + l + 1)q + l$ 个参数需要学习：
++ 连接权重：
+  + 输入层到隐藏层：$d \times q$
+  + 隐藏层到输出层：$q \times l$
++ 阈值：
+  + 隐藏层：$q$
+  + 输出层：$l$
+
+#### 梯度更新公式
+  
+BP算法基于随机梯度下降，对于学习率 $\eta$，需要对两个权重、两个阈值做更新，更新如下：
+
+$$ \Delta w_{hj} = \eta g_j b_h$$
+$$ \Delta \theta_{j} = -\eta g_j $$
+$$ \Delta v_{ih} = \eta e_h x_i$$
+$$ \Delta \gamma_{h} = - \eta e_h$$
+
+其中 $g_j, b_h, e_h$ 含义如下：
+
+$$ b_h = \frac{\partial\beta_j}{\partial w_{hj}}$$
+$$ g_j = \hat{y}_j^k(1-\hat{y}_j^k)(y_j^k-\hat{y}_j^k)$$
+$$ e_h = b_h(1-b_h)\sum_{j=1}^l w_{hj}g_j$$
+
+具体推导过程可见：[推导过程](https://datawhalechina.github.io/pumpkin-book/#/chapter5/chapter5?id=_510)
+
+#### 误差逆传播算法
+
+```python
+输入：训练集 D = {(x_k, y_k)}^m_{k=1};
+     学习率 η
+过程：
+1. 在(0,1)范围内随机初始化网络中所有连接权和阈值
+2. repeat
+3. for all (x_k, y_k) ∈ D do
+4.     根据当前参数计算当前样本的输出 \hat{y}_k;
+5.     计算输出层神经元的梯度项 g_j;
+6.     计算隐层神经元的梯度项 e_h;
+7.     更新连接权 w_{hj}, v_{ih} 与阈值 θ_j, γ_h
+8. end for
+9. until 达到停止条件
+
+输出：连接权与阈值确定的多层前馈神经网络
+```
+
+#### 注意点
+
+BP算法目标是要最小化 $D$ 上的累积误差，但是上述“标准BP算法”更新的是单个样本的误差
++ 整个数据集全部计算一遍误差后再进行梯度更新
++ 设置 batch-size，每个 batch 更新一次
+
+BP神经网络经常会遭遇过拟合，可以尝试以下方法缓解
++ “早停”：若验证集准确度下降则停止更新完成训练
++ 引入正则化：在损失函数中引入描述网络复杂度的部分，如所有权重阈值平方和，修正后的目标函数如下
+  + $E = \lambda \frac{1}{m}\sum_{k=1}^m E_k + (1-\lambda)\sum_iw_i^2$
+  + 其中 $\lambda \in (0, 1)$，用于对经验误差和网络复杂度进行折中，通常利用交叉验证选择
+
+### 全局最小和局部最小
+
+![min](/assets/Blogs/MachineLearning/15.png){:height="50%" width="50%"}
+
+尝试跳出局部最小：
+
++ 不同参数初始化并训练多个网络，再选择最优的
++ 模拟退火：每一步都有一定概率接受次优解，但这个概率应该逐渐变小以保证训练稳定
++ 随机梯度下降
++ ...
+  
+## 第六章 支持向量机
+
+### SVM基本思想
+
+目标：对数据集 $D$，假设为二分类任务，期望在样本空间中找到一个划分超平面将不同样本分开，且泛化性能最后（即后面所说的间隔最大）
+
+划分超平面定义如下，其中 $w$ 为法向量决定面的方向，$b$ 决定截距
+
+$$w^Tx + b = 0$$
+
+样本空间中点 $x$ 到超平面距离为
+
+$$r = \frac{|w^Tx + b|}{||w||}$$
+
+若能正确分类，则有如下不等式成立，其中最近的几个训练样本点使等号成立，他们就是 **“支持向量”**
+$$\begin{cases} w^T x_i + b > +1, & y_i = +1 ; \\\ w^T x_i + b \le -1, & y_i = -1. \end{cases}$$
+
+两个异类支持向量到超平面距离和即为间隔
+
+$$\gamma = \frac{2}{||w||}$$
+
+![svm](/assets/Blogs/MachineLearning/16.png){:height="50%" width="50%"}
+
+欲找到最大间隔的划分超平面，就是要满足如下最优化条件的 $w，b$
+
+$$\begin{aligned} & \min\limits_{w,b} \quad \frac{1}{2}\|w\|^2 \\ & s.t. \quad y_i(w^Tx_i + b) \ge 1, \quad i = 1, 2, \ldots, m \end{aligned} $$
+
+**模型结果求解过程见：**[求解过程](https://datawhalechina.github.io/pumpkin-book/#/chapter6/chapter6?id=_69)。对 $w, b$ 求偏导后得到表达式如下,其中 $\alpha_i$ 是拉格朗日乘子,对应样本 $(x_i，y_i)$ ：
+$$\begin{aligned} &w = \sum_{i =1}^m\alpha_iy_ix_i, \\ & 0 = \sum_{i=1}^m \alpha_i y_i\end{aligned}$$
+
+**最优化目标转化过程见：**[转化过程](https://datawhalechina.github.io/pumpkin-book/#/chapter6/chapter6?id=_611)。转化后可以得到最优化目标如下（对偶问题）：
+
+$$\begin{aligned} &\max\limits_{\alpha} \quad\frac{1}{2}\sum_{i=1}^m\alpha_i-\sum_{i=1}^m\sum_{j=1}^ma_{i}a_jy_iy_jx_i^Tx_j \\ &\text{s.t.} \quad\sum_{i=1}^ma_{i}y_i=0; \quad a_i\ge 0,\quad i=1,2,...,m.
+\end{aligned}$$
+
+同时上述过程要满足 KKT 条件，
+
+$$\begin{cases} \alpha_i \ge 0;\\\ y_if(x_i)-1\ge 0;\\\ \alpha_i(y_if(x_i)-1)=0..\end{cases}$$
+
+考察KKT条件可以发现，模型结果只可能与 $y_if(x_i) = 1$ 的样本（即支持向量）有关，这也是为什么被称为支持向量机。
+
+**优化问题求解方法：** SMO 方法
++ 选取一对需要更新的 $\alpha_i, \alpha_j$
++ 固定其他参数，求解获得更新后的 $\alpha_i, \alpha_j$
+
+### 核函数
+
+#### 提出背景
+在基本SVM模型中假设特征空间线性可分，但一般情况下需要将特征映射到高维空间，才可以实现线性可分。
+
+假设映射函数 $\phi(x)$，则映射后在特征空间中划分平面可以表示为
+
+$$f(x) = w^T\phi(x) + b$$
+
+求解最优化问题转化为
+
+$$\begin{aligned} &\max\limits_{\alpha} \quad\frac{1}{2}\sum_{i=1}^m\alpha_i-\sum_{i=1}^m\sum_{j=1}^m\alpha_{i}\alpha_jy_iy_j\phi(x_i)^T\phi(x_j) \\ &\text{s.t.} \quad\sum_{i=1}^m\alpha_{i}y_i=0; \quad \alpha_i\ge 0,\quad i=1,2,...,m.
+\end{aligned}$$
+
+核函数的提出就是为了解决最优化问题中出现 $\phi(x_i)^T\phi(x_j)$ 空间维度很高甚至无穷难以计算的问题。即假设存在 $\kappa(x_i,x_j) = \phi(x_i)^T\phi(x_j)$，带入求解后可以得到模型结果如下
+
+$$\begin{aligned} f(x) &= w^T\phi(x) + b \\ &= \sum_{i=1}^m\alpha_iy_i\phi(x_i)^T\phi(x)+b \\ &= \sum_{i=1}^m\alpha_iy_i\kappa(x_i,x)+b\end{aligned}$$
+
+#### 核函数和特征空间选择
+
+正常思路：（1）先找到一个$\phi(\cdot)$ 将数据映射到高维线性可分空间；（2）找到相应的 $\kappa(\cdot, \cdot)$。但这两步都难以完成，因此我们尝试先选择一个 $\kappa(\cdot, \cdot)$，但有两个小问题：
++ （1）他对应的 $\phi(\cdot)$ 映射空间是线性可分的吗？
++ （2）什么样的函数可以作为核函数，即可以找到相应的$\phi(\cdot)$？
+
+对于（1）其实是模型好坏的问题，因为即使不可分也只是影响模型效果，后文也有软间隔等策略进行补偿。问题（2）的解答如下：
+
+![kappa](/assets/Blogs/MachineLearning/17.png){:height="50%" width="50%"}
+
+简单来说，我们不知道怎么映射是最好的，因此我们选择一个核函数对原数据进行操作，本质上就是将样本映射到相应的高维空间。
+
+因此**核函数隐式定义了整个高维样本空间**，在这样的意义下对**SVM 模型分类结果的好坏**起着至关重要的影响
+
+#### 常用的核函数
+
+名称 | 表达式 | 参数
+---|---|---
+线性核 |  $\kappa(x_i, x_j) = x_ix_j^T$  T | 
+多项式核 |  $\kappa(x_i, x_j) = (x_i^Tx_j)^d$  | $d \ge 1$ 为多项式的次数
+高斯核 | $\kappa(x_i, x_j) = \text{exp}(-\frac{\lvert\lvert x_i-x_j \rvert\rvert^2}{2\sigma^2})$ | $\sigma > 0$ 为高斯核的带宽(width)
+拉普拉斯核 |  $\kappa(x_i, x_j) = \text{exp}(- \frac{\lvert\lvert x_i-x_j \rvert\rvert}{\sigma})$  |  $\sigma> 0$ 
+Sigmoid 核 |  $\kappa(x_i, x_j) = \text{tanh}(\beta_0x_i^Tx_j+\theta)$  | tanh为双曲正切函数,  $\beta > 0, \theta < 0$ 
+
+此外可以通过函数组合得到
++ 若 $\kappa_1, \kappa_2$ 为核函数，则对任意正数 $\gamma_1, \gamma_2$，其线性组合也是核函数
+
+$$\gamma_1 \kappa_1 + \gamma_2\kappa_2$$
+
++ 若 $\kappa_1, \kappa_2$ 为核函数，则核函数的直积也是核函数
+  
+$$\kappa_1 \otimes\kappa_2 (x,z) = \kappa_1(x,z)\kappa_2(x,z)$$
+
++ 若 $\kappa_1$ 为核函数，则对任意函数 $g(x)$，下述函数也为核函数
+
+$$\kappa(x,z) = g(x)\kappa_1(x,z)g(z)$$
+
+### 软间隔与正则化
+
+#### 1. 软间隔的引入
+
+如前文所说不一定线性可分，同时即使线性可分也可能过拟合，因此允许某些样本不满足 $y_if(x_i)-1\ge 0$ 的约束条件，即为软间隔
+
+![soft](/assets/Blogs/MachineLearning/18.png){:height="50%" width="50%"}
+
+基于软间隔，目标函数可以调整如下：
+
+$$\min\limits_{w,b}\frac{1}{2}\|w\|^2 + C \sum_{i=1}^{m}\ell_{0/1}(y_i(w^Tx_i+b)-1)$$
+
+其中 $C>0$ 为惩罚系数，设置为 ∞ 时转化为硬间隔。
+
+$l_{0/1}(z) = \begin{cases} 1, & \text{if } z < 0; \\ 0, & \text{otherwise}. \end{cases}$是“0/1损失函数”，但考虑到数学性质太差，通常采用别的“替代损失”函数，通常是凸的连续函数且是“0/1损失函数”的上界。
+
+$$\begin{aligned} &hinge损失: l_{hinge}(z) = max(0,1 - z) ; \\
+
+&指数损失(exponential\ loss): l_{exp}(z) = exp(-z) ; \\
+
+&对率损失(logistic\ loss): l_{log}(z) = log(1+exp(-z)) \end{aligned}$$
+
+![loss](/assets/Blogs/MachineLearning/19.png){:height="50%" width="50%"}
+
+#### 2. 软间隔支持向量机
+
+引入软间隔和松弛变量 $\xi_i = \max(0, 1 - y_i(w^Tx_i+b)) \ge 0$ 后，可以重写优化目标，并得到软间隔支持向量机
+
+$$\begin{aligned} &\min\limits_{w,b,\xi_i} \quad \frac{1}{2}\|w\|^2+C\sum_{i=1}^m\xi_i \\ & s.t. \quad y_i(w^Tx_i+b) \ge 1-\xi_i \\ & \qquad \xi_i \ge 0, \quad i=1,2,...,m.\end{aligned}$$
+
+**模型结果求解过程见：**[求解过程](https://datawhalechina.github.io/pumpkin-book/#/chapter6/chapter6?id=_635)。对 $w, b, \xi_i$ 求偏导后得到表达式如下,其中 $\alpha_i, \mu_i$ 是拉格朗日乘子，对应样本 $(x_i，y_i)$：
+
+$$\begin{aligned} &w = \sum_{i =1}^m\alpha_iy_ix_i, \\ & 0 = \sum_{i=1}^m \alpha_i y_i \\ & C= \alpha_i + \mu_i \end{aligned}$$
+
+**最优化目标转化过程见：**[转化过程](https://datawhalechina.github.io/pumpkin-book/#/chapter6/chapter6?id=_640)。转化后可以得到最优化目标如下（对偶问题）：
+
+$$\begin{aligned} &\max\limits_{\alpha} \quad\frac{1}{2}\sum_{i=1}^m\alpha_i-\sum_{i=1}^m\sum_{j=1}^m\alpha_{i}\alpha_jy_iy_jx_i^Tx_j \\ &\text{s.t.} \quad\sum_{i=1}^m\alpha_{i}y_i=0; \quad 0 \le \alpha_i \le C,\quad i=1,2,...,m.
+\end{aligned}$$
+
+同时上述过程要满足 KKT 条件，
+
+$$\begin{cases} \alpha_i \ge 0，\quad \mu_i \ge 0，\\\ y_if(x_i)-1 + \xi_i \ge 0，\\\ \alpha_i(y_if(x_i)-1+\xi_i)=0， \\ \xi_i \ge 0， \mu_i\xi_i = 0\end{cases}$$
+
+考察KKT条件可以发现，模型结果只可能与支持向量有关：
++ $\alpha_i = 0$ 或 $y_if(x_i) = 1 - \xi_i$ 与 SVM 分析一致
++ 若 $\alpha_i < C$，则 $\mu_i >0，\xi_i = 0$，即样本在间隔线上
++ 若 $\alpha_i = C$，则 $\mu_i = 0$
+  + 若 $\xi_i \le 1$ 则在最大间隔内
+  + 若 $\xi_i > 1$ 则为分类错误
+
+如果用对率损失函数替代，会发现与Logist回归模型几乎一致，两者性能也相当，但存在如下差异：
++ Logistic 回归模型可以输出概率，而 SVM 输出不具备概率含义
++ Logistic 回归可以直接用于多分类，而 SVM 需要进一步加工
+
+hinge损失得出的解具有稀疏性，而对率损失是光滑的单调递减函数，不能导出支持向量的概念，因此求解依赖更多的训练样本，预测开销也更大
+
+#### 3. 正则化
+
 
