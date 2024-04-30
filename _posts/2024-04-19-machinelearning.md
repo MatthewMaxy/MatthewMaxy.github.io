@@ -716,7 +716,7 @@ $$\begin{aligned} f(x) &= w^T\phi(x) + b \\ &= \sum_{i=1}^m\alpha_iy_i\phi(x_i)^
 
 对于（1）其实是模型好坏的问题，因为即使不可分也只是影响模型效果，后文也有软间隔等策略进行补偿。问题（2）的解答如下：
 
-![kappa](/assets/Blogs/MachineLearning/17.png){:height="50%" width="50%"}
+![kappa](/assets/Blogs/MachineLearning/17.png)
 
 简单来说，我们不知道怎么映射是最好的，因此我们选择一个核函数对原数据进行操作，本质上就是将样本映射到相应的高维空间。
 
@@ -726,7 +726,7 @@ $$\begin{aligned} f(x) &= w^T\phi(x) + b \\ &= \sum_{i=1}^m\alpha_iy_i\phi(x_i)^
 
 名称 | 表达式 | 参数
 ---|---|---
-线性核 |  $\kappa(x_i, x_j) = x_ix_j^T$  T | 
+线性核 |  $\kappa(x_i, x_j) = x_ix_j^T$  | 
 多项式核 |  $\kappa(x_i, x_j) = (x_i^Tx_j)^d$  | $d \ge 1$ 为多项式的次数
 高斯核 | $\kappa(x_i, x_j) = \text{exp}(-\frac{\lvert\lvert x_i-x_j \rvert\rvert^2}{2\sigma^2})$ | $\sigma > 0$ 为高斯核的带宽(width)
 拉普拉斯核 |  $\kappa(x_i, x_j) = \text{exp}(- \frac{\lvert\lvert x_i-x_j \rvert\rvert}{\sigma})$  |  $\sigma> 0$ 
@@ -756,10 +756,10 @@ $$\kappa(x,z) = g(x)\kappa_1(x,z)g(z)$$
 基于软间隔，目标函数可以调整如下：
 
 $$\min\limits_{w,b}\frac{1}{2}\|w\|^2 + C \sum_{i=1}^{m}\ell_{0/1}(y_i(w^Tx_i+b)-1)$$
+$$l_{0/1}(z) = \begin{cases} 1, & \text{if } z < 0; \\ 0, & \text{otherwise}. \end{cases}$$
 
-其中 $C>0$ 为惩罚系数，设置为 ∞ 时转化为硬间隔。
+其中 $C>0$ 为惩罚系数，设置为 ∞ 时转化为硬间隔。$l_{0/1}(z)$是“0/1损失函数”，但考虑到数学性质太差，通常采用别的“替代损失”函数，通常是凸的连续函数且是“0/1损失函数”的上界。
 
-$l_{0/1}(z) = \begin{cases} 1, & \text{if } z < 0; \\ 0, & \text{otherwise}. \end{cases}$是“0/1损失函数”，但考虑到数学性质太差，通常采用别的“替代损失”函数，通常是凸的连续函数且是“0/1损失函数”的上界。
 
 $$\begin{aligned} &hinge损失: l_{hinge}(z) = max(0,1 - z) ; \\
 
@@ -767,7 +767,7 @@ $$\begin{aligned} &hinge损失: l_{hinge}(z) = max(0,1 - z) ; \\
 
 &对率损失(logistic\ loss): l_{log}(z) = log(1+exp(-z)) \end{aligned}$$
 
-![loss](/assets/Blogs/MachineLearning/19.png){:height="50%" width="50%"}
+![loss](/assets/Blogs/MachineLearning/19.png){:height="70%" width="70%"}
 
 #### 2. 软间隔支持向量机
 
