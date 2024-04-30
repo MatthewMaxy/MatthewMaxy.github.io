@@ -2,7 +2,7 @@
 layout: post
 title:  "模型评价指标总结（一）"
 date:   2024-04-20 16:13:00 +0800
-tags:   ComputerVision Evaluation
+tags:   CV Basic
 color: rgb(255,102,94)
 cover: '../assets/Blogs/CVModelEvaluation/title.png'
 subtitle: '计算机视觉领域各任务模型评价指标'

@@ -2,7 +2,7 @@
 layout: post
 title:  "机器学习知识点总结 "
 date:   2024-04-27 08:00:00 +0800
-tags:   MachineLearning
+tags:   ML Basic
 color: rgb(66,118,91)
 cover: '../assets/Blogs/MachineLearning/title.png'
 subtitle: '准备夏令营和春招面试知识点总结'
@@ -674,6 +674,7 @@ $$\gamma = \frac{2}{||w||}$$
 $$\begin{aligned} & \min\limits_{w,b} \quad \frac{1}{2}\|w\|^2 \\ & s.t. \quad y_i(w^Tx_i + b) \ge 1, \quad i = 1, 2, \ldots, m \end{aligned} $$
 
 **模型结果求解过程见：**[求解过程](https://datawhalechina.github.io/pumpkin-book/#/chapter6/chapter6?id=_69)。对 $w, b$ 求偏导后得到表达式如下,其中 $\alpha_i$ 是拉格朗日乘子,对应样本 $(x_i，y_i)$ ：
+
 $$\begin{aligned} &w = \sum_{i =1}^m\alpha_iy_ix_i, \\ & 0 = \sum_{i=1}^m \alpha_i y_i\end{aligned}$$
 
 **最优化目标转化过程见：**[转化过程](https://datawhalechina.github.io/pumpkin-book/#/chapter6/chapter6?id=_611)。转化后可以得到最优化目标如下（对偶问题）：
@@ -711,7 +712,7 @@ $$\begin{aligned} f(x) &= w^T\phi(x) + b \\ &= \sum_{i=1}^m\alpha_iy_i\phi(x_i)^
 
 #### 核函数和特征空间选择
 
-正常思路：（1）先找到一个$\phi(\cdot)$ 将数据映射到高维线性可分空间；（2）找到相应的 $\kappa(\cdot, \cdot)$。但这两步都难以完成，因此我们尝试先选择一个 $\kappa(\cdot, \cdot)$，但有两个小问题：
+正常思路：（1）先找到一个 $\phi(\cdot)$ 将数据映射到高维线性可分空间；（2）找到相应的 $\kappa(\cdot, \cdot)$。但这两步都难以完成，因此我们尝试先选择一个 $\kappa(\cdot, \cdot)$，但有两个小问题：
 + （1）他对应的 $\phi(\cdot)$ 映射空间是线性可分的吗？
 + （2）什么样的函数可以作为核函数，即可以找到相应的$\phi(\cdot)$？
 
@@ -757,6 +758,7 @@ $$\kappa(x,z) = g(x)\kappa_1(x,z)g(z)$$
 基于软间隔，目标函数可以调整如下：
 
 $$\min\limits_{w,b}\frac{1}{2}\|w\|^2 + C \sum_{i=1}^{m}\ell_{0/1}(y_i(w^Tx_i+b)-1)$$
+
 $$l_{0/1}(z) = \begin{cases} 1, & \text{if } z < 0; \\ 0, & \text{otherwise}. \end{cases}$$
 
 其中 $C>0$ 为惩罚系数，设置为 ∞ 时转化为硬间隔。$l_{0/1}(z)$是“0/1损失函数”，但考虑到数学性质太差，通常采用别的“替代损失”函数，通常是凸的连续函数且是“0/1损失函数”的上界。
@@ -804,4 +806,17 @@ hinge损失得出的解具有稀疏性，而对率损失是光滑的单调递减
 
 #### 3. 正则化
 
+可以把0/1 损失函数换成别的替代损失函数以得到其他学习模型，这些模型的性质与所用的替代函数直接相关，但有以下共同特征：
+
+$$\min\limits_f \Omega(f) + C \sum_{i=1}^m \ell(f(x_i), y_i),$$
+
++ $\Omega(f)$：结构风险，用于描述模型 $f$ 的某些性质
++ $\sum\limits_{i=1}^{n}l(f(x_i), y_i)$：经验风险，用于描述模型与训练数据的契合程度；
++ $C$：用于对二者进行折中
+
+$\Omega(f)$ 表述了我们希望获得具有何种性质的模型（例如复杂度较小的模型），这为引入领域知识和用户意图提供了途径.
+
+另一方面，$\Omega(f)$ 有助于削减假设空间，从而降低了最小化训练误差的过拟合风险，从这个角度来说，$\Omega(f)$ 是正则化项，$C$ 是正则化系数。
+
+$L_p$ 范数是常用的正则化项，其中 $L_2$ 范数 $||w||_2$ 倾向于 $w$ 的分量取值尽量均衡，即非零分量个数尽量稠密，而 $L_0$ 范数 $||w||_0$ 和 $L_1$ 范数 $||w||_1$ 则倾向于 $w$ 的分量尽量稀疏，即非零分量个数尽量少。具体可见：[关于正则化]()
 
