@@ -5,7 +5,7 @@ date:   2024-04-27 08:00:00 +0800
 tags:   MachineLearning
 color: rgb(66,118,91)
 cover: '../assets/Blogs/MachineLearning/title.png'
-subtitle: '准备夏令营和春招面试知识点总结 &#124;'
+subtitle: '准备夏令营和春招面试知识点总结'
 ---
 <head>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
@@ -19,6 +19,8 @@ subtitle: '准备夏令营和春招面试知识点总结 &#124;'
         });
     </script>
 </head>
+
+{:toc}
 
 ## 第一章 绪论
 
