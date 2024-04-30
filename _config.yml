@@ -45,6 +45,7 @@ footer:
 markdown: kramdown
 toc_levels: 1……2
 kramdown:
+  toc_levels: 1……2
   input: GFM
 # 代码高亮 使用rouge
 highlighter: rouge
