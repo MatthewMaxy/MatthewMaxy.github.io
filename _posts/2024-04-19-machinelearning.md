@@ -871,7 +871,7 @@ $$\begin{aligned}f(x) & = \sum_{i=1}^m(\hat{\alpha}_i-\alpha_i)\phi(x_i)^T\phi(x
 
 考虑引入核函数对于其他模型的可行性，具有如下定理：
 
-![kernal](/assets/Blogs/MachineLearning/21.png){:height="70%" width="70%"}
+![kernal](/assets/Blogs/MachineLearning/21.png)
 
 即对于一般的损失函数和正则化项（单调递增），优化问题都可以表示为核函数的线性组合。因此将一系列基于核函数的学习方法统称为“核方法”，例如引入核函数将线性学习器拓展为非线性学习器。
 
