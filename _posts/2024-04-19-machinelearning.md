@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "机器学习知识点总结 "
-date:   2024-04-27 08:00:00 +0800
+date:   2024-05-01 08:00:00 +0800
 tags:   ML Basic
 color: rgb(66,118,91)
 cover: '../assets/Blogs/MachineLearning/title.png'
