@@ -1115,10 +1115,11 @@ $$P_B(x_1, x_2, \dots, x_d) = \prod_{i=1}^dP_B(x_i\mid \pi_i) = \prod_{i=1}^d\th
 
 给定数据集 $D = \{ x_1, x_2, \dots , x_m\}$ ，贝叶斯网 $B = \lang G, \Theta \rang$ 在 $D$ 上的评分函数可以写为:
 
-$$s(B \mid D) = f(\theta)|B| - LL(B \mid D) $$
+$$s(B \mid D) = f(\theta)\lvert B \rvert - LL(B \mid D) $$
+
 $$LL(B \mid D) = \sum_{i=1}^m \log P_B(x_i)$$
 
-+ $|B|$ 是贝叶斯网参数个数，$f(\theta)$ 是每个参数 $\theta$ 所需编码位数
++ $\lvert B \rvert$ 是贝叶斯网参数个数，$f(\theta)$ 是每个参数 $\theta$ 所需编码位数
 + 第一项描述了网络所需编码位数（非零的属性，稀疏程度）
 + 第二项描述了 $B$ 对应的概率分布 $P_B$ 对 $D$ 描述的多好
 
