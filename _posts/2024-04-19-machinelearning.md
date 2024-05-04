@@ -20,6 +20,16 @@ subtitle: '准备夏令营和春招面试知识点总结'
     </script>
 </head>
 
+## 目录
+
+[第一章 绪论](#第一章-绪论) \
+[第二章 模型评估与选择](#第二章-模型评估与选择) \
+[第三章 线性模型](#第三章-线性模型) \
+[第四章 决策树](#第四章-决策树) \
+[第五章 神经网络](#第五章-神经网络) \
+[第六章 支持向量机](#第六章-支持向量机) \
+[第七章 贝叶斯分类器](#第七章-贝叶斯分类器)
+
 ## 第一章 绪论
 
 ### 归纳偏好
@@ -537,7 +547,7 @@ $$\text{Ent}(\tilde{D}) = -\sum_{k=1}^{|\mathcal{Y}|} \tilde{p}_k \log_2 \tilde{
 
 ![Tree](/assets/Blogs/MachineLearning/13.png){:height="30%" width="30%"}![line](/assets/Blogs/MachineLearning/14.png){:height="30%" width="30%"}
 
-## 神经网络
+## 第五章 神经网络
 
 ### 单层感知机
 
@@ -1113,7 +1123,7 @@ $$P_B(x_1, x_2, \dots, x_d) = \prod_{i=1}^dP_B(x_i\mid \pi_i) = \prod_{i=1}^d\th
 
 #### 2. 学习
 
-给定数据集 $D = \{ x_1, x_2, \dots , x_m\}$ ，贝叶斯网 $B = \lang G, \Theta \rang$ 在 $D$ 上的评分函数可以写为:
+给定数据集 $D = \{ x_1, x_2, \dots , x_m\}$ ，贝叶斯网 $B = \langle G, \Theta \rangle$ 在 $D$ 上的评分函数可以写为:
 
 $$s(B \mid D) = f(\theta)\lvert B \rvert - LL(B \mid D) $$
 
