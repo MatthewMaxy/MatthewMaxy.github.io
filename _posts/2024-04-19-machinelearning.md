@@ -1291,7 +1291,7 @@ $$\ell_{exp} (H_{t-1} + h_t \mid \mathcal{D}) =  \mathbb{E}_{x \sim \mathcal{D}}
 
 可以证明，基于这个目标得出的理想的基学习器，等价于在分布 $\mathcal{D}_t$ 下最小化分类误差得出 $h_t$：[证明过程](https://datawhalechina.github.io/pumpkin-book/#/chapter8/chapter8?id=_813)
 
-$$h_t(x) = \argmin_h \mathbb{E}_{x \sim \mathcal{D}_t}[\mathbb{I}(f(x) \not ={h(x)})]$$
+$$h_t(x) = \arg \min_h \mathbb{E}_{x \sim \mathcal{D}_t}[\mathbb{I}(f(x) \not ={h(x)})]$$
 
 其中样本分布 $\mathcal{D}_t$ 调整规则如下：
 
@@ -1334,7 +1334,8 @@ Bagging 算法是并行式集成学习算法的代表，利用[自助采样法](
   + 自助采样只用约63.2\%的数据，基于数据可作为验证集对泛化性进行估计
   + 除了预测包外样本还可以用于辅助剪枝或辅助早停
   + 包外预测 $H^{oob}$ 和泛化误差的包外估计 $\epsilon^{oob}$ 为
-$$H^{oob}(x) = \argmax_{y \in \mathcal{Y}}\sum_{t=1}^T\mathbb{I}(h_t(x) = y) \cdot (x \notin D_t)$$
+
+$$H^{oob}(x) = \arg \max_{y \in \mathcal{Y}}\sum_{t=1}^T\mathbb{I}(h_t(x) = y) \cdot (x \notin D_t)$$
 
 $$\epsilon^{oob} = \frac{1}{\lvert D \rvert} \sum_{(x, y) \in D}\mathbb{I}(H^{oob}(x) \not ={y})$$
   
