@@ -1485,5 +1485,96 @@ $$ p_2 = \frac{(a+b)(a+c) + (c+d)(b+d)}{m^2}$$
 
 ## 聚类
 
+### 聚类任务
 
+无监督学习，样本集 $D = \{ x_1, x_2, \dots , x_m\}$，划分为 $k$ 个不同的簇 $\{ C_1, C_2, \dots C_k \}$，其中 $C_i \cap_{i \not = j}C_j = \empty, D = \cup_{i=1}^kC_i$，用 $\lambda_j \in \{1, 2, \dots, k\}$ 表示簇标记
+
+### 性能度量
+
+理想情况下，聚类结果：
++ “簇内相似度”较高
++ “簇间相似度”较低
+
+#### 1. 与参考模型比较（外部指标）
+
+假定样本集 $D = \{ x_1, x_2, \dots , x_m\}$，簇划分结果 $\mathcal{C} = \{ C_1, C_2, \dots C_k \}$，参考模型给出划分标记 $\mathcal{C}^* = \{ C_1^*, C_2^*, \dots C_k^* \}$。令 $\lambda， \lambda^*$ 表示与$\mathcal{C}， \mathcal{C}^*$ 对应的簇标记。将样本两两配对，定义如下
+
+$$a=|SS|,\quad SS = \lbrace (x_i,x_j)\mid \lambda_i=\lambda_j, \ \lambda_i^*=\lambda_j^*, \ i<j\rbrace$$
+
+$$b=|SD|,\quad SD = \lbrace (x_i,x_j)\mid \lambda_i=\lambda_j, \ \lambda_i^*\ne\lambda_j^*, \ i<j\rbrace$$
+
+$$c=|DS|,\quad DS = \lbrace (x_i,x_j)\mid \lambda_i\ne\lambda_j, \ \lambda_i^*=\lambda_j^*, \ i<j\rbrace$$
+
+$$d=|DD|,\quad DD = \lbrace (x_i,x_j)\mid \lambda_i\ne\lambda_j, \ \lambda_i^*\ne\lambda_j^*, \ i<j\rbrace$$
+
+**Jaccard 系数**
+
+$$JC = \frac{a}{a+b+c}$$
+
+**FM 指数**
+
+$$FMI = \sqrt{\frac{a}{a+b}\cdot\frac{a}{a+c}}$$
+
+**Rand 指数**
+
+$$RI = \frac{2(a+d)}{m(m-1)}$$
+
+这些度量指标均在 [0, 1] 范围内，值越大越好
+
+#### 2. 直接考察聚类结果（内部指标）
+
+考虑聚类结果的簇划分 $\mathcal{C} = {C_1, C_2,...,C_k}$, 定义 $dist(\cdot, \cdot)$ 为两个样本间距离， $\mu$ 为簇 $C$ 中心点
+
+$$\begin{aligned}avg(C) &= \frac{2}{\lvert C \rvert(\lvert C \rvert-1)}\sum_{1\le i<j\le \lvert C \rvert} dist(x_i, x_j), \\\ diam(C) &= \max_{1\le i<j\le \lvert C \rvert} dist(x_i, x_j), \\\ d_{min}(C_i, C_j) &= \min_{x_i\in C_i,x_j\in C_j} dist(x_i, x_j), \\\ d_{cen}(C_i, C_j) &= dist(\mu_i, \mu_j), \end{aligned}$$
+
+**DB指数（越小越好）：** 簇内距离尽可能小，不同簇中心点距离尽可能远
+
+$$DBI = \frac{1}{k} \sum_{i=1}^k \max_{j\neq i} \left( \frac{avg(C_i) + avg(C_j)}{d_{cen}(\mu_i, \mu_j)} \right)$$
+
+**Dunn指数（越大越好）：** 簇间最近样本尽可能远，簇内最远样本尽可能近
+
+$$ DI = \min_{1\le i<k} \Big\{\min_{j\ne i} \left( \frac{d_{min} (C_i, C_j)}{\max_{1\le l \le k} diam(C_l)} \right) \Big\}$$
+
+### 距离计算
+
+对于 $dist(\cdot, \cdot)$ 函数，用来度量两个样本相似度，距离越大相似度越小。一般情况使用 “距离度量”。
+
+#### 1. 距离度量
+
+**基本性质**
+
++ 非负性： $dist(x_i,x_j)\ge0$
++ 同一性： $dist(x_i,x_j)=0$  当且仅当  $x_i=x_j$
++ 对称性： $dist(x_i,x_j)=dist(x_j,x_i)$
++ 直递性： $dist(x_i,x_j)\le dist(x_i,x_k)+dist(x_k,x_j)$
+
+**常用距离**
+
++ 闵可夫斯基距离 $p \ge 1$
+
+$$dist_{mk}(x_i, x_j) = \Big(\sum_{u=1}^n\lvert x_{iu} - x_{ju}\rvert^p\Big)^\frac{1}{p}$$
+
++ 欧式距离 $p = 2$
+
+$$dist_{ed}(x_i, x_j) = \|x_i - x_j \|_2 = \sqrt{\sum_{u=1}^n\lvert x_{iu} - x_{ju}\rvert^2}$$
+
++ 曼哈顿距离 $p = 1$
+
+$$dist_{man}(x_i, x_j) = \|x_i - x_j \|_1 = \sum_{u=1}^n\lvert x_{iu} - x_{ju}\rvert$$
+
++ VDM 距离：衡量无序属性，$m_{u,a,i}$ 为第 $i$ 个样本簇中，在属性 $u$ 上取值为 $a$ 的样本数目
+
+$$VDM_p(a,b) = \sum_{i=1}^k \lvert \frac{m_{u,a,i}}{m_{u,a}} - \frac{m_{u, b, i}}{m_{u, b}} \rvert ^p$$
+
++ 混合属性距离：$n_c$ 个有序属性，$n - n_c$ 个无序属性
+
+$$\text{MinkovDM}_p(x_i,x_j) = \left(\sum_{u=1}^{n_c} |x_{iu}-x_{ju}|^p + \sum_{u=n_c+1}^{n} \text{VDM}_p(x_{iu},x_{ju}) \right)^{\frac{1}{p}}$$
+
++ 加权距离
+
+$$\text{dist}_\text{WMK}(x_i,x_j) = (w_1\cdot |x_{i1}-x_{j1}|^p + ... + w_n\cdot |x_{in}-x_{jn}|^p )^{\frac{1}{p}}$$
+
+#### 2. 非度量距离
+
+用于相似度度量的距离未必满足距离度量的基本性质，尤其是直递性，例如“人”、“马”、“人马”，此时采用的就是非度量距离，具体可参考[距离度量学习]()
 
