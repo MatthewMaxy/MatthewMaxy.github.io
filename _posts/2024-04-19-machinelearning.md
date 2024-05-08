@@ -1491,16 +1491,16 @@ $$ p_2 = \frac{(a+b)(a+c) + (c+d)(b+d)}{m^2}$$
 
 ### 性能度量
 
-理想情况下，聚类结果：
+假定样本集 $D = \{ x_1, x_2, \dots , x_m \}$ ，簇划分结果 $\mathcal{C} = \{ C_1, C_2, \dots C_k \}$ 。理想情况下，聚类结果：
 + “簇内相似度”较高
 + “簇间相似度”较低
 
 
-假定样本集 $D = \{ x_1, x_2, \dots , x_m \}$，簇划分结果 $\mathcal{C} = \{ C_1, C_2, \dots C_k \}$
+
 
 #### 1. 与参考模型比较（外部指标）
 
-参考模型给出划分标记 $\mathcal{C}^*= \{ C_1^*, C_2^*, \dots, C_ k^*\}$。令 $\lambda，\lambda^*$ 表示与$\mathcal{C}， \mathcal{C}^*$ 对应的簇标记。将样本两两配对，定义如下
+参考模型给出划分标记 $\mathcal{C}^* = \{ C_1^*, C_2^*, \dots, C_ k^* \}$ 。令 $\lambda，\lambda^*$ 表示与 $\mathcal{C}， \mathcal{C}^*$ 对应的簇标记。将样本两两配对，定义如下
 
 $$a=|SS|,\quad SS = \lbrace (x_i,x_j)\mid \lambda_i=\lambda_j, \ \lambda_i^*=\lambda_j^*, \ i<j\rbrace$$
 
