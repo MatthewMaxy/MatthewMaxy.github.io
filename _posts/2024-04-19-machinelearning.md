@@ -1487,7 +1487,7 @@ $$ p_2 = \frac{(a+b)(a+c) + (c+d)(b+d)}{m^2}$$
 
 ### 聚类任务
 
-无监督学习，样本集 $D = \{ x_1, x_2, \dots , x_m\}$，划分为 $k$ 个不同的簇 $\{ C_1, C_2, \dots C_k \}$，其中 $C_i \cap_{i \not = j}C_j = \empty, D = \cup_{i=1}^kC_i$，用 $\lambda_j \in \{1, 2, \dots, k\}$ 表示簇标记
+无监督学习，样本集 $D = \{ x_1, x_2, \dots , x_m\}$，划分为 $k$ 个不同的簇 $\{ C_1, C_2, \dots C_k \}$，其中 $C_i \cap_{i \not = j}C_j = \emptyset, D = \cup_{i=1}^kC_i$，用 $\lambda_j \in \{1, 2, \dots, k\}$ 表示簇标记
 
 ### 性能度量
 
@@ -1495,9 +1495,12 @@ $$ p_2 = \frac{(a+b)(a+c) + (c+d)(b+d)}{m^2}$$
 + “簇内相似度”较高
 + “簇间相似度”较低
 
+
+假定样本集 $D = \{ x_1, x_2, \dots , x_m \}$，簇划分结果 $\mathcal{C} = \{ C_1, C_2, \dots C_k \}$
+
 #### 1. 与参考模型比较（外部指标）
 
-假定样本集 $D = \{ x_1, x_2, \dots , x_m\}$，簇划分结果 $\mathcal{C} = \{ C_1, C_2, \dots C_k \}$，参考模型给出划分标记 $\mathcal{C}^*= \{ C_1^*, C_2^*, \dots, C_ k^*\}$。令 $\lambda，\lambda^*$ 表示与$\mathcal{C}， \mathcal{C}^*$ 对应的簇标记。将样本两两配对，定义如下
+参考模型给出划分标记 $\mathcal{C}^*= \{ C_1^*, C_2^*, \dots, C_ k^*\}$。令 $\lambda，\lambda^*$ 表示与$\mathcal{C}， \mathcal{C}^*$ 对应的簇标记。将样本两两配对，定义如下
 
 $$a=|SS|,\quad SS = \lbrace (x_i,x_j)\mid \lambda_i=\lambda_j, \ \lambda_i^*=\lambda_j^*, \ i<j\rbrace$$
 
@@ -1523,7 +1526,7 @@ $$RI = \frac{2(a+d)}{m(m-1)}$$
 
 #### 2. 直接考察聚类结果（内部指标）
 
-考虑聚类结果的簇划分 $\mathcal{C} = {C_1, C_2,...,C_k}$, 定义 $dist(\cdot, \cdot)$ 为两个样本间距离， $\mu$ 为簇 $C$ 中心点
+定义 $dist(\cdot, \cdot)$ 为两个样本间距离， $\mu$ 为簇 $C$ 中心点
 
 $$\begin{aligned}avg(C) &= \frac{2}{\lvert C \rvert(\lvert C \rvert-1)}\sum_{1\le i<j\le \lvert C \rvert} dist(x_i, x_j), \\\ diam(C) &= \max_{1\le i<j\le \lvert C \rvert} dist(x_i, x_j), \\\ d_{min}(C_i, C_j) &= \min_{x_i\in C_i,x_j\in C_j} dist(x_i, x_j), \\\ d_{cen}(C_i, C_j) &= dist(\mu_i, \mu_j), \end{aligned}$$
 
