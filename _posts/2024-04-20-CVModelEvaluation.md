@@ -60,10 +60,6 @@ Pascal VOC 2008 中设置IoU的阈值为 0.5，即对于一个样本若被预测
 
 注意：COCO 语境下的 AP 已经对所有类别平均，即为一般意义的 mAP
 
-
-
-
-
 ## 图像生成领域
 
 ### Inception Score（IS）
