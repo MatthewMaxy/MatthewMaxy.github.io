@@ -1608,6 +1608,7 @@ $$p' = p_i + \eta \cdot (x_j - p_i)$$
 ![LVQ](/assets/Blogs/MachineLearning/32.png)
 
 本质上每个原型向量 $p_i$ 定义了与之相关的一个区域 $R_i$，该区域中每个样本与 $p_i$ 的距离不大于它与其他原型向量  $p_{i'} (i' \neq i)$ 的距离，即
+
 $$R_i = \{ x \in X \mid \|x - p_i \|^2 \le \|x - p_{i'}\|^2, i' \neq i \} $$
 
 由此形成了对样本空间 $\mathcal{X}$ 的簇划分 $\{R_1, R_2,..., R_q\}$，该划分通常称为“Voronoi剖分”。
