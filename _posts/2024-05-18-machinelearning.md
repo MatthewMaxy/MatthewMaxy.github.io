@@ -1705,9 +1705,9 @@ $$P_\mathcal{M}(x) = \sum_{i=1}^k \alpha_i \cdot p(x \mid \mu_i, \Sigma_i)$$
 
 2. 根据距离相等可以进行推导，依据 $D$ 可以计算出矩阵 $B$，具体过程见：[推导过程](https://datawhalechina.github.io/pumpkin-book/#/chapter10/chapter10?id=_1010)
 
-3. 由于 $B = Z^TZ$，希望得到 $Z$。观察形式可以对 $B$ 进行特征值分解，即 $B = V \Lambda V^T$，其中 $\Lambda$ 是特征值构成的对角阵。假设有 $d^*$ 个非零特征值，构成对角阵 $\Lambda_* = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_*)$，相应的特征向量矩阵为 $V_*$  由此可以得出 $Z$ 的表达式
+3. 由于 $B = Z^TZ$，希望得到 $Z$。观察形式可以对 $B$ 进行特征值分解，即 $B = V \Lambda V^T$，其中 $\Lambda$ 是特征值构成的对角阵。假设有 $d'$ 个非零特征值，构成对角阵 $\Lambda' = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_{d'})$，相应的特征向量矩阵为 $V'$  由此可以得出 $Z$ 的表达式
 
-$$Z = \Lambda_*^{1/2}V_*^T \in \mathbb{R}^{d^* \times m}$$
+$$Z = \Lambda'^{1/2}V'^T \in \mathbb{R}^{d' \times m}$$
 
 4. 真实情况下一般不要求降维后距离与原来完全一致，同时希望降维后维度 $d' \ll d$。因此选取最大的 $d'$ 个特征值构成 $\tilde{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_{d'})$，相应的特征向量矩阵为 $\tilde{V}$  由此可以得出 $Z$ 的表达式
 
