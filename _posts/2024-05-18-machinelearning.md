@@ -1711,7 +1711,7 @@ $$Z = \Lambda'^{1/2}V'^T \in \mathbb{R}^{d' \times m}$$
 
 4. 真实情况下一般不要求降维后距离与原来完全一致，同时希望降维后维度 $d' \ll d$。因此选取最大的 $d'$ 个特征值构成 $\tilde{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_{d'})$，相应的特征向量矩阵为 $\tilde{V}$  由此可以得出 $Z$ 的表达式
 
-$$Z = \tilde{\Lambda}^{1/2}\tilde{V}^T \in \mathbb{R}^{d' \times m}$$
+$$Z = (\tilde{\Lambda})^{1/2}(\tilde{V})^T \in \mathbb{R}^{d' \times m}$$
 
 ### 2. 线性降维方法
 
