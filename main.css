@@ -188,8 +188,8 @@ pre>code {
 }
 
 .site-header {
-    border-top: 3px solid #9b3022;
-    border-bottom: 1px solid #9b3022;
+    border-top: 3px solid #5A366B;
+    border-bottom: 1px solid #5A366B;
     min-height: 56px;
     position: relative
 }
@@ -277,7 +277,7 @@ pre>code {
 }
 
 .site-footer {
-    border-top: 1px solid #9b3022;
+    border-top: 1px solid #5A366B;
     padding: 30px 0
 }
 
@@ -694,7 +694,7 @@ pre>code {
 .profile-wrapper {
     border-radius: 25px;
     position: relative;
-    top: 20%;
+    top: 13%;
     width: 600px;
     margin-left: auto;
     margin-right: auto
