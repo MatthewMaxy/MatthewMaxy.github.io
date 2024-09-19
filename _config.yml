@@ -2,7 +2,7 @@
 title: 'Matthew’s Blog'
 description: 'This blog is used to record my study notes and project materials'
 keywords: 'Computer Sciences, Machine Learning, Artificial Intelligence'
-url: 'https://MatthewMaxy.github.io' # your host
+url: 'http://MatthewMaxy.top' # your host
 
 # nav 中文字符空格：&emsp;
 nav: # 最佳体验 六个标签 且最好每个标签不超过4中文字
@@ -19,11 +19,11 @@ NickName: '主谓定状补'
 webtitle: 'Matthew’s Blog'
 bio: 'Southeast University - Software Engineering'
 about: true
-aboutyou: 'I am an undergraduate student majoring in Software Engineering at Southeast University. My research interest includes Computer Vision, Multimodal learning and AIGC'
+aboutyou: 'I am Matthew. You could get touch to me by view my Homepage'
 portraits: '/assets/profile.jpeg' # your portraits image file path
 
 # SNS
-SNS: true
+SNS: false
 SNS-icon: #['Facebook', 'weibo', 'qq', 'github', 'Dribbble', 'Twitter', 'instagram', 'weixin', 'Codepen', 'Huggingface']
   mail: 'mailto:matthewma0211@gmail.com'
   qq: 'http://wpa.qq.com/msgrd?v=3&uin=1123957599&site=qq&menu=yes'
