@@ -1,3 +1,6 @@
-This is my personal website: matthewmaxy.github.io
+This is my personal website: matthewmaxy.top
+It combines my personal information, experience and blog
+Hope you enjoy my travel blogs and communicate with me!
 
-Style referenced from https://wanjiazhao1203.github.io/.
+Homepage style referenced from https://wanjiazhao1203.github.io/.
+Blog style generated with the help of Deepseek.
