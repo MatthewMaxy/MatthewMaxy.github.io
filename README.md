@@ -1,4 +1,4 @@
-This is my personal website: matthewmaxy.top. It combines my personal information, experiences and blogs.
+This is my personal website. It combines my personal information, experiences and blogs.
 
 Hope you enjoy my travel blogs and communicate with me!
 
