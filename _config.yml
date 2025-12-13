@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Xiaoyu Ma (马骁宇)"
-description              : "Ph.D Student \\ Tout ira bien"
+description              : "Ph.D Student | Tout ira bien"
 repository               : "Matthewmaxy.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -22,7 +22,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 # Site Author
 author:
   name             : "Xiaoyu Ma (马骁宇)"
-  avatar           : "images/android-chrome-512x512.png"
+  avatar           : "images/me.jpeg"
   bio              : "Southeast University"
   location         : "Nanjing, China"
   employer         :
