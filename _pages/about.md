@@ -20,14 +20,16 @@ redirect_from:
 I am currently a Ph.D. student at the <a href="https://cse.seu.edu.cn/">School of Computer Science and Engineering</a>, <a href="https://www.seu.edu.cn/">Southeast University</a>, under the supervision of <a href="https://cs.seu.edu.cn/haochen303/main.htm">Prof. Hao Chen</a>. 
 Previously, I received my bachelor’s degree in Software Engineering from Southeast University in 2025. 
 
-My research interest includes Multimodal Learning and explainable AI (xAI).
-I have published several papers at the top international AI conferences with total citation <a href='https://scholar.google.com/citations?user=A1AVy8AAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). 
+My research interests include multimodal learning and explainable AI (xAI).
+I have published several papers at the top international AI conferences.
 I will continue striving for academic excellence and impactful research.
 
 
 # 🔥 News
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2025.10*: &nbsp;🎉🎉 Attended the workshop of Balanced Multimodal Learning @TechBeat! Thanks for the invitation from Dr.<a href="https://echo0409.github.io/">Yake Wei</a>!
+- *2025.06*: &nbsp;🎉🎉 Graduate from Southeast University (SEU)!
+- *2025.05*: &nbsp;🎉🎉 One paper accepted by ICML2025 thanks to all co-authors!
+- *2024.12*: &nbsp;🎉🎉 Selected as <a href="https://yzb.seu.edu.cn/2024/1206/c6677a513909/page.htm">Zhi-Shan</a> Ph.D. of Southeast University (70 annually)!
 
 # 📝 Publications 
 
