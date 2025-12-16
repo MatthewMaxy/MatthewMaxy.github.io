@@ -63,8 +63,12 @@ A full publication list is available on my [google scholar](https://scholar.goog
 - *2022 - 2024* Southeast University Zhishan Student Scholarship
 - *2022 - 2023* Outstanding Student Cadre of Southeast University
 
+# 🪄 Professional Service
+- Reviewer
++ Transactions on Multimedia Computing Communications and Applications (TOMM)  
+
 # 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+- *2024.08 - 2025.01*, Tuoersi Information Technology, China.
 
 # ✨ Miscellaneous
 - 👾 I LOVE Pokémon!
