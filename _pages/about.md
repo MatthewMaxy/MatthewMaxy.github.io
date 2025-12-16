@@ -30,6 +30,10 @@ I will continue striving for academic excellence and impactful research.
 - *2025.05*: &nbsp;🎉🎉 One paper accepted by ICML2025 thanks to all co-authors!
 - *2024.12*: &nbsp;🎉🎉 Selected as <a href="https://yzb.seu.edu.cn/2024/1206/c6677a513909/page.htm">Zhi-Shan</a> Ph.D. of Southeast University (70 annually)!
 
+# 📖 Educations
+- *2025.09 - (Present)*, Ph.D. student, Computer Science and Technology. Southeast University, Nanjing, China.
+- *2021.09 - 2025.06*, B.Eng., Software Engineering. Southeast University, Nanjing, China.
+
 # 📝 Publications 
 
 A full publication list is available on my [google scholar](https://scholar.google.com/citations?user=GA1AVy8AAAAJ&hl=zh-CN) page.
@@ -58,10 +62,6 @@ A full publication list is available on my [google scholar](https://scholar.goog
 - *2023.11* China Undergraduate Mathematical Contest in Modeling - Provincial First Prize
 - *2022 - 2024* Southeast University Zhishan Student Scholarship
 - *2022 - 2023* Outstanding Student Cadre of Southeast University
-
-# 📖 Educations
-- *2025.09 - (Present)*, Ph.D. student, Computer Science and Technology. Southeast University, Nanjing, China.
-- *2021.09 - 2025.06*, B.Eng., Software Engineering. Southeast University, Nanjing, China.
 
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
