@@ -24,7 +24,6 @@ My research interests include multimodal learning and explainable AI (xAI).
 I have published several papers at the top international AI conferences.
 I will continue striving for academic excellence and impactful research.
 
-
 # 🔥 News
 - *2025.10*: &nbsp;🎉🎉 Attended the workshop of Balanced Multimodal Learning @TechBeat! Thanks for the invitation from Dr. <a href="https://echo0409.github.io/">Yake Wei</a>!
 - *2025.06*: &nbsp;🎉🎉 Graduate from Southeast University (SEU)!
@@ -60,9 +59,9 @@ A full publication list is available on my [google scholar](https://scholar.goog
 - *2022 - 2024* Southeast University Zhishan Student Scholarship
 - *2022 - 2023* Outstanding Student Cadre of Southeast University
 
-<!-- # 📖 Educations
+# 📖 Educations
 - *2025.09 - (Present)*, Ph.D. student, Computer Science and Technology. Southeast University, Nanjing, China.
-- *2021.09 - 2025.06*, B.Eng., Software Engineering. Southeast University, Nanjing, China. -->
+- *2021.09 - 2025.06*, B.Eng., Software Engineering. Southeast University, Nanjing, China.
 
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
