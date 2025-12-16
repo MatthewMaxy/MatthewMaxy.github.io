@@ -26,7 +26,7 @@ I will continue striving for academic excellence and impactful research.
 
 
 # 🔥 News
-- *2025.10*: &nbsp;🎉🎉 Attended the workshop of Balanced Multimodal Learning @TechBeat! Thanks for the invitation from Dr.<a href="https://echo0409.github.io/">Yake Wei</a>!
+- *2025.10*: &nbsp;🎉🎉 Attended the workshop of Balanced Multimodal Learning @TechBeat! Thanks for the invitation from Dr. <a href="https://echo0409.github.io/">Yake Wei</a>!
 - *2025.06*: &nbsp;🎉🎉 Graduate from Southeast University (SEU)!
 - *2025.05*: &nbsp;🎉🎉 One paper accepted by ICML2025 thanks to all co-authors!
 - *2024.12*: &nbsp;🎉🎉 Selected as <a href="https://yzb.seu.edu.cn/2024/1206/c6677a513909/page.htm">Zhi-Shan</a> Ph.D. of Southeast University (70 annually)!
@@ -55,16 +55,14 @@ A full publication list is available on my [google scholar](https://scholar.goog
 </div>
 
 # 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2025.06* Outstanding Undergraduate Thesis Award of Southeast University. 
+- *2023.11* China Undergraduate Mathematical Contest in Modeling - Provincial First Prize
+- *2022 - 2024* Southeast University Zhishan Student Scholarship
+- *2022 - 2023* Outstanding Student Cadre of Southeast University
 
-# 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
+% # 📖 Educations
+% - *2025.09 - (Present)*, Ph.D. student, Computer Science and Technology. Southeast University, Nanjing, China.
+% - *2021.09 - 2025.06*, B.Eng., Software Engineering. Southeast University, Nanjing, China.
 
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
