@@ -46,7 +46,7 @@ A full publication list is available on my [google scholar](https://scholar.goog
 </div>
 
 <div class='paper-box-text' markdown="1">
-- [Improving Multimodal Learning Balance and Sufficiency through Data Remixing](https://arxiv.org/paper/2510.14411) \\
+- [Revisit Modality Imbalance at the Decision Layer](https://arxiv.org/paper/2510.14411) \\
   **Xiaoyu Ma**, Hao Chen.\\
   **[Preprint]** | <a href="https://arxiv.org/pdf/2510.14411" target="_blank"><img src='https://img.shields.io/badge/PDF-181717?style=flat&logo=arXiv&logoColor=red' alt='PDF'></a> 
 </div>
