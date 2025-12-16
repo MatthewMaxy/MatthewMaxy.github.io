@@ -66,3 +66,9 @@ A full publication list is available on my [google scholar](https://scholar.goog
 
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+
+# ✨ Miscellaneous
+- 👾 I LOVE Pokémon!
+- 🦅 Student of Ravenclaw！
+- 🐉 Former member of Dragon and Lion Team (SEU)!
+- 🖌️ Calligraphy of amateur level 10!
