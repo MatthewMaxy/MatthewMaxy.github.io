@@ -64,8 +64,9 @@ A full publication list is available on my [google scholar](https://scholar.goog
 - *2022 - 2023* Outstanding Student Cadre of Southeast University
 
 # 🪄 Professional Service
-- Reviewer
-+ Transactions on Multimedia Computing Communications and Applications (TOMM)  
+- Reviewer: TOMM, ICML, ICCV, AAAI, ICLR
+- Teaching Assistant, Computer Vision, Southeast University
+- Teacher (Enterprise), LLM Principles and Applications, Southwest Minzu University
 
 # 💻 Internships
 - *2024.08 - 2025.01*, Tuoersi Information Technology, China.
